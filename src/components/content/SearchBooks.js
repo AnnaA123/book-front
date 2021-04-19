@@ -1,29 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { getAllReviews } from '../util/ReviewAPI';
+import { searchBooks } from '../util/BookAPI';
 
- class ListReviews extends React.Component {
+ class SearchBooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            reviews: [],
+            books: [],
             loading: true,
         }
-        this.getReviews = this.getReviews.bind(this);
+        this.getBooks = this.getBooks.bind(this);
     }
 
-    getReviews() {
-        getAllReviews().then(reviews => {
+    getBooks(terms) {
+        searchBooks(terms).then(books => {
             this.setState({
-              reviews,
+              books: books.items,
               loading: false,
             });
+            console.log(this.state.books);
           });
      }
 
     componentDidMount() {
-        //const userId = localStorage.getItem('currentUser');
-        this.getReviews();
+        this.getBooks();
     }
 
     render (){
@@ -32,11 +32,11 @@ import { getAllReviews } from '../util/ReviewAPI';
                         <p>Loading...</p>
                     </div>
         } else {
-            if (this.state.reviews[0] !== undefined) {
-                return this.state.reviews.map((review) => {
-                    return <div key={review._id}><Link to={`/review/${review._id}`} key={review._id}> 
+            if (this.state.books[0] !== undefined) {
+                return this.state.books.map((book) => {
+                    return <div key={book.id}><Link to={`/review/${book.id}`} key={book.id}> 
                     <div>
-                        <p>{ review.Title }</p>
+                        <p>{ book.volumeInfo.title }</p>
                     </div></Link></div>
                 });
             } else {
@@ -48,4 +48,4 @@ import { getAllReviews } from '../util/ReviewAPI';
     }
 }
 
-export default ListReviews;
+export default SearchBooks;

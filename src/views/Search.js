@@ -1,16 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import ListReviews from './../components/content/ListReviews';
+import React from 'react';
+import SearchBooks from './../components/content/SearchBooks';
 
 function Search(props) {
     return (
         <div>
             <h1>Hello :)</h1>
             <div>
-                <ListReviews />
+                <SearchBooks />
             </div>
-            
-            
         </div>
     )
 }
