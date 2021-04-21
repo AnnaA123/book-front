@@ -41,7 +41,7 @@ import { searchBooks } from '../util/BookAPI';
                 });
             } else {
                 return <div>
-                        <p>No reviews</p>
+                    <p>...</p>
                     </div>
             }
         }

@@ -1,12 +1,12 @@
 import React from 'react';
-import SearchBooks from './../components/content/SearchBooks';
+import BookSearch from './../components/content/BookSearch';
 
 function Search(props) {
     return (
         <div>
             <h1>Hello :)</h1>
             <div>
-                <SearchBooks />
+                <BookSearch />
             </div>
         </div>
     )
