@@ -5,27 +5,57 @@ import SearchBooks from './SearchBooks';
     constructor(props) {
         super(props);
         this.state = {
-            searchQuery: null,
+            searchQuery: '',
+            toggle: false,
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+    }
+
+    // toggler for updating the search results
+    toggler() {
+        this.setState(prevState => ({ toggle: !prevState.toggle }));
+    }
+
+    searchResults = () => {
+        if (this.state.toggle) {
+            return <div><SearchBooks sQuery={this.state.searchQuery}/></div>
         }
     }
 
-    doSearch = () => {
-        console.log('searching time');
+    handleSearch(event) {
+        event.preventDefault();
+        console.log('searching ' + this.state.searchQuery);
+
+        this.toggler();
+        
     }
 
-    handleSearch(event) {
-        event.prevetDefault();
-        this.doSearch();
+    handleChange = (event) => {
+        event.preventDefault();
+        const val = event.target.value;
+
+        this.setState(() => ({
+            toggle: false,
+            searchQuery: val
+        }));
     }
 
     render (){
         return <div>
             <form onSubmit={this.handleSearch} className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Search"/>
+                <input 
+                    className="form-control me-2" 
+                    type="search" 
+                    placeholder="Search by Title" 
+                    value={this.state.searchQuery} 
+                    onChange={this.handleChange}/>
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
 
-            <SearchBooks />
+            {this.searchResults()}
+            
         </div>
     }
 }

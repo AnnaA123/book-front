@@ -7,6 +7,7 @@ import { searchBooks } from '../util/BookAPI';
         super(props);
         this.state = {
             books: [],
+            searchQuery: props.sQuery,
             loading: true,
         }
         this.getBooks = this.getBooks.bind(this);
@@ -18,12 +19,11 @@ import { searchBooks } from '../util/BookAPI';
               books: books.items,
               loading: false,
             });
-            console.log(this.state.books);
           });
      }
 
     componentDidMount() {
-        this.getBooks();
+        this.getBooks(this.state.searchQuery);
     }
 
     render (){
@@ -32,7 +32,7 @@ import { searchBooks } from '../util/BookAPI';
                         <p>Loading...</p>
                     </div>
         } else {
-            if (this.state.books[0] !== undefined) {
+            if (this.state.books !== undefined) {
                 return this.state.books.map((book) => {
                     return <div key={book.id}><Link to={`/review/${book.id}`} key={book.id}> 
                     <div>
@@ -41,7 +41,7 @@ import { searchBooks } from '../util/BookAPI';
                 });
             } else {
                 return <div>
-                    <p>...</p>
+                    <p>No search results</p>
                     </div>
             }
         }
