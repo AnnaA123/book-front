@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { getAllBookReviews } from '../util/ReviewAPI';
 
-// for user profile TODO
+// for /views/Review.js
  class ListReviews extends React.Component {
     constructor(props) {
         super(props);
