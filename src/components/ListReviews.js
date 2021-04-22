@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { getAllReviews } from '../util/ReviewAPI';
+import { getAllBookReviews } from '../util/ReviewAPI';
 
+// for user profile TODO
  class ListReviews extends React.Component {
     constructor(props) {
         super(props);
@@ -12,8 +13,16 @@ import { getAllReviews } from '../util/ReviewAPI';
         this.getReviews = this.getReviews.bind(this);
     }
 
-    getReviews() {
-        getAllReviews().then(reviews => {
+    getBookId = () => {
+        const currentLocation = window.location.href;
+        const splitLocation = currentLocation.split('/');
+        const bookId = splitLocation[splitLocation.length -1];
+        console.log('review BOOKID ' + bookId)
+        return bookId;
+    }
+
+    getReviews(id) {
+        getAllBookReviews(id).then(reviews => {
             this.setState({
               reviews,
               loading: false,
@@ -23,7 +32,8 @@ import { getAllReviews } from '../util/ReviewAPI';
 
     componentDidMount() {
         //const userId = localStorage.getItem('currentUser');
-        this.getReviews();
+        const bookId = this.getBookId();
+        this.getReviews(bookId);
     }
 
     render (){
@@ -34,10 +44,11 @@ import { getAllReviews } from '../util/ReviewAPI';
         } else {
             if (this.state.reviews[0] !== undefined) {
                 return this.state.reviews.map((review) => {
-                    return <div key={review._id}><Link to={`/review/${review._id}`} key={review._id}> 
+                    return <div key={review._id}>
                     <div>
-                        <p>{ review.Title }</p>
-                    </div></Link></div>
+                        <h3>{ review.Title }</h3>
+                        <p>{ review.Content }</p>
+                    </div></div>
                 });
             } else {
                 return <div>

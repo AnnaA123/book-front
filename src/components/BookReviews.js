@@ -1,5 +1,6 @@
 import React from 'react';
 import {getBook} from '../util/BookAPI';
+import ListReviews from './ListReviews';
 
 // at /views/Reviews.js
  class BookReviews extends React.Component {
@@ -7,8 +8,8 @@ import {getBook} from '../util/BookAPI';
         super(props);
         this.state = {
             bookInfo: [],
-            loadingBook: true,
-            loadingReviews: false
+            loading: true,
+            authorKey: 0,
         }
     }
 
@@ -24,7 +25,7 @@ import {getBook} from '../util/BookAPI';
             if (info !== undefined) {
                 this.setState({
                     bookInfo: info,
-                    loadingBook: false
+                    loading: false
                 })
             } else {
                 console.log('Error retrieving data.')
@@ -45,7 +46,7 @@ import {getBook} from '../util/BookAPI';
     
 
     render (){
-        if(this.state.loadingBook || this.state.loadingReviews) {
+        if(this.state.loading || this.state.loading) {
             return <div>
                     <p>Loading...</p>
                 </div>
@@ -53,9 +54,9 @@ import {getBook} from '../util/BookAPI';
             return <div>
                 <div>
                     <h3>{this.state.bookInfo.volumeInfo.title}</h3>
-                    <p>{this.state.bookInfo.volumeInfo.authors.map((author) => {
+                    <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
                         return <p>{author}</p>
-                    })}</p>
+                    })}</div>
                 </div>
             </div>
         }

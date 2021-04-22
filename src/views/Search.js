@@ -1,5 +1,5 @@
 import React from 'react';
-import BookSearch from './../components/content/BookSearch';
+import BookSearch from '../components/BookSearch';
 
 function Search(props) {
     return (
