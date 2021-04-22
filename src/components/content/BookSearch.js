@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchBooks from './SearchBooks';
 
+// search bar at /views/Search.js for searching books from google api
  class BookSearch extends React.Component {
     constructor(props) {
         super(props);
@@ -13,8 +14,8 @@ import SearchBooks from './SearchBooks';
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    // toggler for updating the search results
-    toggler() {
+    // update the search results
+    toggler = () => {
         this.setState(prevState => ({ toggle: !prevState.toggle }));
     }
 
@@ -24,7 +25,7 @@ import SearchBooks from './SearchBooks';
         }
     }
 
-    handleSearch(event) {
+    handleSearch = (event) => {
         event.preventDefault();
         console.log('searching ' + this.state.searchQuery);
 

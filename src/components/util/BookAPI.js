@@ -6,4 +6,10 @@ const searchBooks = (terms) => {
     })
 }
 
-export { searchBooks };
+const getBook = (id) => {
+    return fetch(apiUrl + '/v1/volumes/' + id).then(response => {
+        return response.json();
+    })
+}
+
+export { searchBooks, getBook };
