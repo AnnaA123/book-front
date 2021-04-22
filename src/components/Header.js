@@ -13,7 +13,7 @@ import { Link, withRouter } from 'react-router-dom';
                                     <Link className='nav-link' to='/' >Search</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link className='nav-link' to='/profile' >Profile</Link>
+                                    <Link className='nav-link' to={'/profile/' +  localStorage.getItem('currentUser')}>Profile</Link>
                                 </li>
                                 <li className='nav-item'>
                                     <Link className='nav-link' to='/login' onClick={() => {localStorage.clear()}}>Logout</Link>

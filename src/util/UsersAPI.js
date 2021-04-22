@@ -2,6 +2,7 @@ const apiUrl = 'http://localhost:8000/user';
 
 const getSingleUser = (id) => {
     return fetch(apiUrl + '/' + id).then(response => {
+        console.log('UsersAPI ' + JSON.stringify(response));
         return response.json();
     });
 }

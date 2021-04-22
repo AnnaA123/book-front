@@ -8,7 +8,7 @@ const getAllBookReviews = (bookId) => {
 }
 
 const getSingleReview = (reviewId) => {
-    return fetch(apiUrl + reviewId).then(response => {
+    return fetch(apiUrl + '/' + reviewId).then(response => {
         return response.json();
     })
 }
