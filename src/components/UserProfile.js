@@ -40,8 +40,8 @@ import {getSingleUser} from '../util/UsersAPI.js';
                         <p>Loading...</p>
                     </div>
         } else {
-            if (this.state.user[0] !== undefined) {
-                return <div><p>{this.state.user}</p></div>
+            if (this.state.user !== undefined) {
+                return <div><p>{this.state.user.username}</p></div>
             } else {
                 return <div>
                         <p>This user does not exist</p>

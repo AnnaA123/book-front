@@ -2,9 +2,9 @@ const apiUrl = 'http://localhost:8000/user';
 
 const getSingleUser = (id) => {
     return fetch(apiUrl + '/' + id).then(response => {
-        console.log('UsersAPI ' + JSON.stringify(response));
+        console.log('UsersAPI ' + response);
         return response.json();
-    });
+    }).catch(error => console.error('Error:', error));;
 }
 
 //add a new user at SignUpForm.js
