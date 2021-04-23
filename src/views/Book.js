@@ -1,8 +1,9 @@
 import React from 'react';
 import BookInfo from '../components/BookInfo';
-import ListReviews from './../components/ListReviews';
+import ListReviews from '../components/ListReviews';
 
-function Review(props) {
+function Book(props) {
+    console.log('BOOKJSprops: ' + JSON.stringify(props));
     return (
         <div>
             <BookInfo {...props}/>
@@ -11,4 +12,4 @@ function Review(props) {
     )
 }
 
-export default Review;
+export default Book;

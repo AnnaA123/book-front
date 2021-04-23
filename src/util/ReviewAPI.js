@@ -1,7 +1,5 @@
 const apiUrl = 'http://localhost:8000/review';
 
-
-// example:  http://localhost:3000/review/5GbdTc9OJ78C
 const getAllBookReviews = (bookId) => {
     return fetch(apiUrl + '?book=' + bookId).then(response => {
         return response.json();;
@@ -20,4 +18,19 @@ const getSingleReview = (reviewId) => {
     })
 }
 
-export { getAllBookReviews, getAllUserReviews, getSingleReview };
+const addNewReview = (data, token) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'bearer ' + token,
+        },
+        body: JSON.stringify(data),
+    };
+    console.log('REVIEWAPIIIIIIIII: ' + options.headers.authorization);
+    return fetch(apiUrl, options).then(response => {
+        return response.json();
+    })
+}
+
+export { getAllBookReviews, getAllUserReviews, getSingleReview, addNewReview };

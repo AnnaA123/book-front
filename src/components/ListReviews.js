@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getAllBookReviews } from '../util/ReviewAPI';
 import { getSingleUser } from '../util/UsersAPI';
 
-// for /views/Review.js
+// for /views/Book.js
  class ListReviews extends React.Component {
     constructor(props) {
         super(props);

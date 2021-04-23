@@ -6,7 +6,8 @@ import Search from './views/Search';
 import Login from './views/Login';
 import Signup from './views/Signup';
 import Profile from './views/Profile';
-import Review from './views/Review';
+import Book from './views/Book';
+import NewReview from './views/NewReview';
 
 class App extends React.Component {
   constructor(props) {
@@ -42,7 +43,10 @@ class App extends React.Component {
                 <Profile {...props} />
               )}></Route>
               <Route exact path='/book/:id' render={(props) => (
-                <Review {...props} />
+                <Book {...props} />
+              )}></Route>
+              <Route exact path='/write/:id' render={(props) => (
+                <NewReview {...props} />
               )}></Route>
   
             </Switch>

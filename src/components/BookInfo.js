@@ -1,8 +1,9 @@
 import React from 'react';
 import {getBook} from '../util/BookAPI';
+import { Link, withRouter } from 'react-router-dom';
 
 // fetch info about a specific book from google books
-// at /views/Review.js
+// at /views/Book.js
  class BookInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -11,6 +12,7 @@ import {getBook} from '../util/BookAPI';
             loading: true,
             authorKey: 0,
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     getBookId = () => {
@@ -33,6 +35,13 @@ import {getBook} from '../util/BookAPI';
         })
     }
 
+    handleClick(event) {
+        event.preventDefault();
+
+        console.log('no :)');
+        this.props.history.push('/write');
+    }
+
     componentDidMount = () => {
         const bookid = this.getBookId();
         this.getBookInfo(bookid);
@@ -43,7 +52,6 @@ import {getBook} from '../util/BookAPI';
             return;
         };
     }
-    
 
     render (){
         if(this.state.loading) {
@@ -60,6 +68,7 @@ import {getBook} from '../util/BookAPI';
                     <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
                         return <p>{author}</p>
                     })}</div>
+                    <Link to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
                 </div>
                 </div>
             }
@@ -67,4 +76,4 @@ import {getBook} from '../util/BookAPI';
     }
 }
 
-export default BookInfo;
+export default withRouter(BookInfo);
