@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { getSingleReview } from '../util/ReviewAPI';
 
-// for /views/Review.js
- class ListReviews extends React.Component {
+// TEST
+ class ShowReview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,4 +53,4 @@ import { getSingleReview } from '../util/ReviewAPI';
     }
 }
 
-export default ListReviews;
+export default ShowReview;

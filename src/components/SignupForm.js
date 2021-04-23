@@ -96,7 +96,7 @@ class SignUpForm extends React.Component {
 
                     <div>
                         <p>Already have an account?</p>
-                        <Link to='/'>Login here!</Link>
+                        <Link to='/login'>Login here!</Link>
                     </div>
 
                     <button type="submit">Sign Up</button>

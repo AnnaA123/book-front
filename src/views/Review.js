@@ -1,11 +1,11 @@
 import React from 'react';
-import BookReviews from '../components/BookReviews';
+import BookInfo from '../components/BookInfo';
 import ListReviews from './../components/ListReviews';
 
 function Review(props) {
     return (
         <div>
-            <BookReviews {...props}/>
+            <BookInfo {...props}/>
             <ListReviews {...props} />
         </div>
     )

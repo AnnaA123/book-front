@@ -35,7 +35,7 @@ import { searchBooks } from '../util/BookAPI';
         } else {
             if (this.state.books !== undefined) {
                 return this.state.books.map((book) => {
-                    return <div key={book.id}><Link to={`/review/${book.id}`} key={book.id}> 
+                    return <div key={book.id}><Link to={`/book/${book.id}`} key={book.id}> 
                     <div>
                         <p>{ book.volumeInfo.title }</p>
                     </div></Link></div>

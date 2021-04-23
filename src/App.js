@@ -27,7 +27,7 @@ class App extends React.Component {
         <div className='container'>
 
           <Router basename=''>
-          <Header />
+            <Header />
             <Switch>
               <Route exact path='/' render={(props) => (
                 <Search {...props}   />
@@ -38,10 +38,10 @@ class App extends React.Component {
               <Route exact path='/signup' render={(props) => (
                 <Signup {...props} />
               )}></Route>
-              <Route exact path='/profile/:id' render={(props) => (
+              <Route exact path='/user/:id' render={(props) => (
                 <Profile {...props} />
               )}></Route>
-              <Route exact path='/review/:id' render={(props) => (
+              <Route exact path='/book/:id' render={(props) => (
                 <Review {...props} />
               )}></Route>
   

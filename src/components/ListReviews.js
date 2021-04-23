@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { getAllBookReviews } from '../util/ReviewAPI';
+import { getSingleUser } from '../util/UsersAPI';
 
 // for /views/Review.js
  class ListReviews extends React.Component {
@@ -8,9 +9,11 @@ import { getAllBookReviews } from '../util/ReviewAPI';
         super(props);
         this.state = {
             reviews: [],
+            users: [],
             loading: true,
         }
         this.getReviews = this.getReviews.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     getBookId = () => {
@@ -27,11 +30,46 @@ import { getAllBookReviews } from '../util/ReviewAPI';
               reviews,
               loading: false,
             });
+            // userinfo abt reviews
+            reviews.map((review) => {
+                return this.getUser(review.UserID);
+            })
           });
+        
      }
 
+     // get username 
+     getUser = (id) => {
+         if (this.state.reviews[0] !== undefined) {
+            getSingleUser(id).then(user => {
+                this.setState((prev) => ({
+                    users: [...prev.users, user]
+                }))
+            })
+         } else {
+             console.log('oops')
+             setTimeout(this.getUser(id), 1000);
+         }
+     }
+
+     findUser = (id) => {
+         const n = this.state.users.findIndex(x => x._id === id);
+         const u = this.state.users[n];
+
+         if(u === undefined) {
+             return '';
+         } else {
+            return u.username;
+         }
+     }
+
+     handleClick(event) {
+        event.preventDefault();
+
+        console.log('!!!!!!!!!!!!!!!!! ' + JSON.stringify(this.state.users));
+    }
+
     componentDidMount() {
-        //const userId = localStorage.getItem('currentUser');
         const bookId = this.getBookId();
         this.getReviews(bookId);
     }
@@ -48,7 +86,9 @@ import { getAllBookReviews } from '../util/ReviewAPI';
                     <div>
                         <h3>{ review.Title }</h3>
                         <p>{ review.Content }</p>
-                    </div></div>
+                        <Link to={`/user/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
+                    </div>
+                    <button onClick={this.handleClick}>test</button></div>
                 });
             } else {
                 return <div>

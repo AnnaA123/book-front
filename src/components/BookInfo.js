@@ -1,9 +1,9 @@
 import React from 'react';
 import {getBook} from '../util/BookAPI';
-import ListReviews from './ListReviews';
 
-// at /views/Reviews.js
- class BookReviews extends React.Component {
+// fetch info about a specific book from google books
+// at /views/Review.js
+ class BookInfo extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,21 +46,25 @@ import ListReviews from './ListReviews';
     
 
     render (){
-        if(this.state.loading || this.state.loading) {
+        if(this.state.loading) {
             return <div>
                     <p>Loading...</p>
                 </div>
         } else {
-            return <div>
+            if (this.state.bookInfo.volumeInfo === undefined){
+                return <div><p>error</p></div>
+            } else {
+                return <div>
                 <div>
                     <h3>{this.state.bookInfo.volumeInfo.title}</h3>
                     <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
                         return <p>{author}</p>
                     })}</div>
                 </div>
-            </div>
+                </div>
+            }
         }
     }
 }
 
-export default BookReviews;
+export default BookInfo;
