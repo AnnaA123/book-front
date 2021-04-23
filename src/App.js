@@ -8,6 +8,7 @@ import Signup from './views/Signup';
 import Profile from './views/Profile';
 import Book from './views/Book';
 import NewReview from './views/NewReview';
+import Review from './views/Review';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,6 +48,9 @@ class App extends React.Component {
               )}></Route>
               <Route exact path='/write/:id' render={(props) => (
                 <NewReview {...props} />
+              )}></Route>
+              <Route exact path='/review/:id' render={(props) => (
+                <Review {...props} />
               )}></Route>
   
             </Switch>

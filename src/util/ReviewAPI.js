@@ -23,6 +23,7 @@ const addNewReview = (data, token) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'authorization': 'bearer ' + token,
         },
         body: JSON.stringify(data),

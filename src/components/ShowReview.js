@@ -7,7 +7,7 @@ import { getSingleReview } from '../util/ReviewAPI';
     constructor(props) {
         super(props);
         this.state = {
-            review: [],
+            review: {Title: 'test'},
             loading: true,
         }
         this.getReview = this.getReview.bind(this);
@@ -33,7 +33,7 @@ import { getSingleReview } from '../util/ReviewAPI';
     componentDidMount() {
         //const userId = localStorage.getItem('currentUser');
         const bookId = this.getBookId();
-        this.getReview(bookId);
+        //this.getReview(bookId);
     }
 
     render (){
@@ -42,7 +42,7 @@ import { getSingleReview } from '../util/ReviewAPI';
                         <p>Loading...</p>
                     </div>
         } else {
-            if (this.state.review[0] !== undefined) {
+            if (this.state.review !== undefined) {
                 return <div><p>{this.state.reviews.Title}</p></div>
             } else {
                 return <div>

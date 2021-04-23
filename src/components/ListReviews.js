@@ -63,6 +63,8 @@ import { getSingleUser } from '../util/UsersAPI';
          }
      }
 
+     // TEST
+     // <button onClick={this.handleClick}>test</button>
      handleClick(event) {
         event.preventDefault();
 
@@ -84,11 +86,10 @@ import { getSingleUser } from '../util/UsersAPI';
                 return this.state.reviews.map((review) => {
                     return <div key={review._id}>
                     <div>
-                        <h3>{ review.Title }</h3>
+                        <Link to={`/review/${review._id}`}><h3>{ review.Title }</h3></Link>
                         <p>{ review.Content }</p>
                         <Link to={`/user/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
-                    </div>
-                    <button onClick={this.handleClick}>test</button></div>
+                    </div></div>
                 });
             } else {
                 return <div>

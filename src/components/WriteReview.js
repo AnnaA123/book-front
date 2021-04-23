@@ -7,10 +7,7 @@ class WriteReview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            book: {
-                id: 'XbxwDQAAQBAJ',
-                volumeInfo: {title: "Muumit ja suuri tuhotulva"}
-            },
+            book: [],
             review: {
                 title: '',
                 content: '',
@@ -57,8 +54,6 @@ class WriteReview extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log('state rn: ' + JSON.stringify(this.state));
-
         const review = {
             BookID: this.state.book.id,
             UserID: localStorage.getItem('currentUser'),
@@ -68,6 +63,7 @@ class WriteReview extends React.Component {
         }
 
         addNewReview(review, localStorage.getItem('token')).then(sentReview => {
+            console.log('123sent: ' + JSON.stringify(sentReview));
             if (sentReview.error !== undefined) {
                 console.log('ERROR ' + sentReview.error);
             } else {
