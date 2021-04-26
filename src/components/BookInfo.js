@@ -38,7 +38,6 @@ import { Link, withRouter } from 'react-router-dom';
     handleClick(event) {
         event.preventDefault();
 
-        console.log('no :)');
         this.props.history.push('/write');
     }
 

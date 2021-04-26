@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { getSingleReview } from '../util/ReviewAPI';
 import { getSingleUser} from '../util/UsersAPI';
+import { getBook } from '../util/BookAPI';
 
 // TEST
  class ShowReview extends React.Component {
@@ -10,7 +11,11 @@ import { getSingleUser} from '../util/UsersAPI';
         this.state = {
             review: [],
             user: [],
-            book: [],
+            book: {
+                volumeInfo: {
+                    title: '',
+                }
+            },
             loading: true,
         }
         this.getReview = this.getReview.bind(this);
@@ -32,6 +37,7 @@ import { getSingleUser} from '../util/UsersAPI';
             });
             console.log(review);
             this.getUser(review.UserID);
+            this.getBookData(review.BookID);
           });
      }
 
@@ -61,6 +67,18 @@ import { getSingleUser} from '../util/UsersAPI';
         }
     }
 
+    getBookData = (id) => {
+        getBook(id).then(book => {
+            if (book !== undefined) {
+                this.setState({
+                    book
+                })
+            } else {
+                console.log('Error retrieving book.')
+            }
+        })
+    }
+
     componentDidMount() {
         //const userId = localStorage.getItem('currentUser');
         const reviewId = this.getReviewId();
@@ -75,10 +93,14 @@ import { getSingleUser} from '../util/UsersAPI';
         } else {
             if (this.state.review !== null || this.state.review === undefined) {
                 return <div>
-                    <h3>{this.state.review.Title}</h3>
-                    <p>{this.state.review.Content}</p>
-                    <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
+                    <div>
+                        <h2>{this.state.book.volumeInfo.title}</h2>
                     </div>
+                    <div>
+                        <h3>{this.state.review.Title}</h3>
+                        <p>{this.state.review.Content}</p>
+                        <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
+                    </div></div>
             } else {
                 return <div>
                         <p>No review</p>
