@@ -28,8 +28,22 @@ const addNewReview = (data, token) => {
         },
         body: JSON.stringify(data),
     };
-    console.log('REVIEWAPIIIIIIIII: ' + options.headers.authorization);
     return fetch(apiUrl, options).then(response => {
+        return response.json();
+    })
+}
+
+const editReview = (data, id, token) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'authorization': 'bearer ' + token,
+        },
+        body: JSON.stringify(data),
+    };
+    return fetch(apiUrl + '/' + id, options).then(response => {
         return response.json();
     })
 }
@@ -49,4 +63,11 @@ const deleteReview = (id, token) => {
     })
 }
 
-export { getAllBookReviews, getAllUserReviews, getSingleReview, addNewReview, deleteReview };
+export { 
+    getAllBookReviews, 
+    getAllUserReviews, 
+    getSingleReview, 
+    addNewReview, 
+    editReview, 
+    deleteReview 
+};

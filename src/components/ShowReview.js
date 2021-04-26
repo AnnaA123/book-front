@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom';
-import { getSingleReview, deleteReview } from '../util/ReviewAPI';
+import { getSingleReview, editReview, deleteReview } from '../util/ReviewAPI';
 import { getSingleUser} from '../util/UsersAPI';
 import { getBook } from '../util/BookAPI';
 
@@ -10,13 +10,27 @@ import { getBook } from '../util/BookAPI';
         super(props);
         this.state = {
             review: [],
+            edits: '',
             user: [],
             book: [],
             viewerWriter: false,
+            editing: false,
             loading: true,
         }
+        this.handleChange = this.handleChange.bind(this);
         this.getReview = this.getReview.bind(this);
+        this.reviewEdit = this.reviewEdit.bind(this);
+        this.handleEditBtn = this.handleEditBtn.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleChange(event) {   
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState((prevState) => ({
+            [name]: value
+        }));
     }
 
     getReviewId = () => {
@@ -31,6 +45,7 @@ import { getBook } from '../util/BookAPI';
             this.setState({
               review,
               loading: false,
+              edits: review.Content,
             });
             console.log(review);
             this.getUser(review.UserID);
@@ -79,6 +94,32 @@ import { getBook } from '../util/BookAPI';
         })
     }
 
+    //  edit review (with token)
+    reviewEdit = (event) => {
+        event.preventDefault();
+
+        const data = {
+            Content: this.state.edits
+        }
+
+        editReview(data, this.state.review._id, localStorage.getItem('token'))
+        .then((response) => {
+            if(response.error !== undefined) {
+                console.log(response.error);
+            } else {
+                window.location.reload();
+            }
+        })
+    }
+
+    handleEditBtn = (event) => {
+        event.preventDefault();
+        console.log('editing');
+
+        this.setState({editing: !this.state.editing});
+    }
+    
+    //  delete review (with token)
     handleDelete = (event) => {
         event.preventDefault();
 
@@ -92,10 +133,30 @@ import { getBook } from '../util/BookAPI';
         })
     }
 
+    contentView = () => {
+        if (this.state.editing) {
+            return <div>
+                <form onSubmit={this.reviewEdit}>
+                    <input 
+                    type='text'
+                    name='edits'
+                    value={this.state.edits}
+                    onChange={this.handleChange}></input>
+                    <button type='submit'>Save</button>
+                </form>
+            </div>
+        } else {
+            return <div><p>{this.state.review.Content}</p></div>
+        }
+    }
+
     // delete button (only visible for the user who wrote the review)
-    removeReviewBtn = () => {
+    editRemoveBtn = () => {
         if (this.state.viewerWriter) {
-            return <div><button onClick={this.handleDelete}>Delete review</button></div>
+            return <div>
+                <button onClick={this.handleEditBtn}>Edit review</button>
+                <button onClick={this.handleDelete}>Delete review</button>
+                </div>
         }
     }
 
@@ -117,10 +178,10 @@ import { getBook } from '../util/BookAPI';
                     </div>
                     <div>
                         <h3>{this.state.review.Title}</h3>
-                        <p>{this.state.review.Content}</p>
+                        {this.contentView()}
                         <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
                     </div>
-                        {this.removeReviewBtn()}
+                        {this.editRemoveBtn()}
                     </div>
             } else {
                 return <div>
