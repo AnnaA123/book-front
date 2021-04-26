@@ -44,7 +44,7 @@ import { getAllUserReviews } from '../util/ReviewAPI';
         } else {
             if (this.state.reviews[0] !== undefined) {
                 return this.state.reviews.map((review) => {
-                    return <div key={review._id}><Link to={`/book/${review.BookID}`}>
+                    return <div key={review._id}><Link to={`/review/${review._id}`}>
                     <div>
                         <h3>{ review.Title }</h3>
                         <p>{review.BookTitle}</p>

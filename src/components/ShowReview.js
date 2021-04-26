@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { getSingleReview } from '../util/ReviewAPI';
+import { Link, withRouter } from 'react-router-dom';
+import { getSingleReview, deleteReview } from '../util/ReviewAPI';
 import { getSingleUser} from '../util/UsersAPI';
 import { getBook } from '../util/BookAPI';
 
@@ -12,9 +12,11 @@ import { getBook } from '../util/BookAPI';
             review: [],
             user: [],
             book: [],
+            viewerWriter: false,
             loading: true,
         }
         this.getReview = this.getReview.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     getReviewId = () => {
@@ -34,6 +36,11 @@ import { getBook } from '../util/BookAPI';
             console.log(review);
             this.getUser(review.UserID);
             this.getBookData(review.BookID);
+            if (localStorage.getItem('currentUser') === review.UserID){
+                this.setState({
+                    viewerWriter: true,
+                })
+            }
           });
      }
 
@@ -75,6 +82,27 @@ import { getBook } from '../util/BookAPI';
         })
     }
 
+    handleDelete = (event) => {
+        event.preventDefault();
+
+        deleteReview(this.state.review._id, localStorage.getItem('token')).then(response => {
+            console.log('mmmmmmmmmmm ' + response);
+            if (response.error !== undefined) {
+                console.log(response.error);
+            } else {
+                console.log('deleted ' + JSON.stringify(this.props));
+                this.props.history.push(`/user/${localStorage.getItem('currentUser')}`);
+            }
+        })
+    }
+
+    // delete button (only visible for the user who wrote the review)
+    removeReviewBtn = () => {
+        if (this.state.viewerWriter) {
+            return <div><button onClick={this.handleDelete}>Delete review</button></div>
+        }
+    }
+
     componentDidMount() {
         //const userId = localStorage.getItem('currentUser');
         const reviewId = this.getReviewId();
@@ -98,7 +126,9 @@ import { getBook } from '../util/BookAPI';
                         <h3>{this.state.review.Title}</h3>
                         <p>{this.state.review.Content}</p>
                         <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
-                    </div></div>
+                    </div>
+                        {this.removeReviewBtn()}
+                    </div>
             } else {
                 return <div>
                         <p>Loading...</p>
@@ -108,4 +138,4 @@ import { getBook } from '../util/BookAPI';
     }
 }
 
-export default ShowReview;
+export default withRouter(ShowReview);

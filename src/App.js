@@ -9,6 +9,7 @@ import Profile from './views/Profile';
 import Book from './views/Book';
 import NewReview from './views/NewReview';
 import Review from './views/Review';
+import Settings from './views/Settings';
 
 class App extends React.Component {
   constructor(props) {
@@ -51,6 +52,9 @@ class App extends React.Component {
               )}></Route>
               <Route exact path='/review/:id' render={(props) => (
                 <Review {...props} />
+              )}></Route>
+              <Route exact path='/settings' render={(props) => (
+                <Settings {...props} />
               )}></Route>
   
             </Switch>

@@ -34,4 +34,20 @@ const addNewReview = (data, token) => {
     })
 }
 
-export { getAllBookReviews, getAllUserReviews, getSingleReview, addNewReview };
+const deleteReview = (id, token) => {
+    console.log('YES ' + id + token);
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'authorization': 'bearer ' + token,
+        },
+    };
+    return fetch(apiUrl + '/' + id, options).then(response => {
+        console.log('BRUH ' + JSON.stringify(response))
+        return response.json();
+    })
+}
+
+export { getAllBookReviews, getAllUserReviews, getSingleReview, addNewReview, deleteReview };

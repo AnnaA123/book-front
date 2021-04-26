@@ -63,7 +63,6 @@ class WriteReview extends React.Component {
         }
 
         addNewReview(review, localStorage.getItem('token')).then(sentReview => {
-            console.log('123sent: ' + JSON.stringify(sentReview));
             if (sentReview.error !== undefined) {
                 console.log('ERROR ' + sentReview.error);
             } else {
