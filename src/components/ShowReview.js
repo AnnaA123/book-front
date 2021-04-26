@@ -23,7 +23,6 @@ import { getBook } from '../util/BookAPI';
         const currentLocation = window.location.href;
         const splitLocation = currentLocation.split('/');
         const reviewId = splitLocation[splitLocation.length -1];
-        console.log('review REVIEWDÌD ' + reviewId)
         return reviewId;
     }
 
@@ -51,10 +50,8 @@ import { getBook } from '../util/BookAPI';
                this.setState((prev) => ({
                    user
                }))
-               console.log('USER SET')
            })
         } else {
-            console.log('oops')
             setTimeout(this.getUser(id), 1000);
         }
     }
@@ -86,7 +83,6 @@ import { getBook } from '../util/BookAPI';
         event.preventDefault();
 
         deleteReview(this.state.review._id, localStorage.getItem('token')).then(response => {
-            console.log('mmmmmmmmmmm ' + response);
             if (response.error !== undefined) {
                 console.log(response.error);
             } else {
@@ -104,12 +100,9 @@ import { getBook } from '../util/BookAPI';
     }
 
     componentDidMount() {
-        //const userId = localStorage.getItem('currentUser');
         const reviewId = this.getReviewId();
         this.getReview(reviewId);
     }
-
-    //   <Link to={`/book/${this.state.book.id}`}>  {this.state.book.volumeInfo.title}
 
     render (){
         if (this.state.loading) {

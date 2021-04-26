@@ -45,7 +45,6 @@ const deleteReview = (id, token) => {
         },
     };
     return fetch(apiUrl + '/' + id, options).then(response => {
-        console.log('BRUH ' + JSON.stringify(response))
         return response.json();
     })
 }

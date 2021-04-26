@@ -20,4 +20,18 @@ const register = (user) => {
     })
 }
 
-export { getSingleUser, register };
+const deleteUser = (id, token) => {
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'authorization': 'bearer ' + token,
+        },
+    };
+    return fetch(apiUrl + '/' + id, options).then(response => {
+        return response.json();
+    })
+} 
+
+export { getSingleUser, register, deleteUser };
