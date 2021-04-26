@@ -40,8 +40,12 @@ class SignUpForm extends React.Component {
         event.preventDefault();
 
         if (this.state.user.password === this.state.user.checkPw) {
-            const user = {...this.state.user};
-            delete user.checkPw;
+            const user = {
+                username: this.state.user.username,
+                email: this.state.user.email,
+                password: this.state.user.password,
+                description: 'I love reading!',
+            }
 
             register(user).then(user => {
                 if (user.error !== undefined) {

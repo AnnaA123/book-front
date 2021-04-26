@@ -7,6 +7,8 @@ import {getSingleUser} from '../util/UsersAPI.js';
         super(props);
         this.state = {
             user: [],
+            editing: false,
+            userProfile: false,
             loading: true,
         }
     }
@@ -25,11 +27,24 @@ import {getSingleUser} from '../util/UsersAPI.js';
                 user: user,
                 loading: false,
             })
+            if (user._id === localStorage.getItem('currentUser')) {
+                this.setState({
+                    userProfile: true
+                })
+            }
         })
     }
 
+    //      TODO
+    userDescription = () => {
+        if (this.state.editing) {
+            return <div>TODO</div>
+        } else {
+            return <div><p>{this.state.user.description}</p></div>
+        }
+    }
+
     componentDidMount() {
-        //const userId = localStorage.getItem('currentUser');
         const userId = this.getUserId();
         this.getUser(userId);
     }
@@ -41,7 +56,10 @@ import {getSingleUser} from '../util/UsersAPI.js';
                     </div>
         } else {
             if (this.state.user !== undefined) {
-                return <div><p>{this.state.user.username}</p></div>
+                return <div>
+                    <p>{this.state.user.username}</p>
+                    {this.userDescription()}
+                    </div>
             } else {
                 return <div>
                         <p>This user does not exist</p>
