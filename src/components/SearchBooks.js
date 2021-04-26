@@ -9,30 +9,18 @@ import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
         this.state = {
             books: [],
             searchTitle: props.sTitle,
-            searchAuthor: props.sAuthor,
-            titleOrAuthor: props.titleOrAuthor,
             loading: true,
         }
         this.getBooks = this.getBooks.bind(this);
     }
 
     getBooks = () => {
-        console.log('By Author? ' + this.state.titleOrAuthor);
-        if (this.state.titleOrAuthor) {
-            searchBooksByAuthor(this.state.searchAuthor).then(books => {
-                this.setState({
-                  books: books.items,
-                  loading: false,
-                });
-              });
-        } else {
-            searchBooksByTitle(this.state.searchTitle).then(books => {
-                this.setState({
-                  books: books.items,
-                  loading: false,
-                });
-              });
-        }
+        searchBooksByTitle(this.state.searchTitle).then(books => {
+            this.setState({
+                books: books.items,
+                loading: false,
+            });
+            });
      }
 
     componentDidMount = () => {
