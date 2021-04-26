@@ -6,12 +6,15 @@ import SearchBooks from './SearchBooks';
     constructor(props) {
         super(props);
         this.state = {
-            searchQuery: '',
+            searchTitle: '',
+            searchAuthor: '',
+            byAuthor: false,
             toggle: false,
         }
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+        this.handleTitleSearch = this.handleTitleSearch.bind(this);
+        this.handleAuthorSearch = this.handleAuthorSearch.bind(this);
     }
 
     // update the search results
@@ -21,36 +24,57 @@ import SearchBooks from './SearchBooks';
 
     searchResults = () => {
         if (this.state.toggle) {
-            return <div><SearchBooks sQuery={this.state.searchQuery}/></div>
+            return <div><SearchBooks sTitle={this.state.searchTitle} sAuthor={this.state.searchAuthor} titleOrAuthor={this.state.byAuthor}/></div>
         }
     }
 
-    handleSearch = (event) => {
+    handleTitleSearch = (event) => {
         event.preventDefault();
-        console.log('searching ' + this.state.searchQuery);
+        console.log('searching ' + this.state.searchTitle);
 
+        this.setState(prevState => ({ byAuthor: false }));
         this.toggler();
-        
+    }
+
+    handleAuthorSearch = (event) => {
+        event.preventDefault();
+        console.log('searching ' + this.state.searchAuthor);
+
+        this.setState(prevState => ({ byAuthor: true }));
+        console.log('searching ' + this.state.searchAuthor + ' ' + this.state.byAuthor);
+        this.toggler();
     }
 
     handleChange = (event) => {
         event.preventDefault();
         const val = event.target.value;
+        const name = event.target.name;
 
         this.setState(() => ({
             toggle: false,
-            searchQuery: val
+            [name]: val,
         }));
     }
 
     render (){
         return <div>
-            <form onSubmit={this.handleSearch} className="d-flex">
+            <form onSubmit={this.handleTitleSearch} className="d-flex">
                 <input 
                     className="form-control me-2" 
                     type="search" 
                     placeholder="Search by Title" 
-                    value={this.state.searchQuery} 
+                    name='searchTitle'
+                    value={this.state.searchTitle} 
+                    onChange={this.handleChange}/>
+                <button className="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <form onSubmit={this.handleAuthorSearch} className="d-flex">
+                <input 
+                    className="form-control me-2" 
+                    type="search" 
+                    placeholder="Search by Author" 
+                    name='searchAuthor'
+                    value={this.state.searchAuthor} 
                     onChange={this.handleChange}/>
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form>

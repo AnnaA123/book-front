@@ -11,11 +11,7 @@ import { getBook } from '../util/BookAPI';
         this.state = {
             review: [],
             user: [],
-            book: {
-                volumeInfo: {
-                    title: '',
-                }
-            },
+            book: [],
             loading: true,
         }
         this.getReview = this.getReview.bind(this);
@@ -85,16 +81,18 @@ import { getBook } from '../util/BookAPI';
         this.getReview(reviewId);
     }
 
+    //   <Link to={`/book/${this.state.book.id}`}>  {this.state.book.volumeInfo.title}
+
     render (){
         if (this.state.loading) {
             return <div>
                         <p>Loading...</p>
                     </div>
         } else {
-            if (this.state.review !== null || this.state.review === undefined) {
+            if (this.state.review.Title !== undefined && this.state.book.volumeInfo !== undefined) {
                 return <div>
                     <div>
-                        <h2>{this.state.book.volumeInfo.title}</h2>
+                    <Link to={`/book/${this.state.book.id}`}><h2>{this.state.book.volumeInfo.title}</h2></Link>
                     </div>
                     <div>
                         <h3>{this.state.review.Title}</h3>
@@ -103,7 +101,7 @@ import { getBook } from '../util/BookAPI';
                     </div></div>
             } else {
                 return <div>
-                        <p>No review</p>
+                        <p>Loading...</p>
                     </div>
             }
         }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { searchBooks } from '../util/BookAPI';
+import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
 
 // list books from google books api with props from BookSearch.js
  class SearchBooks extends React.Component {
@@ -8,23 +8,35 @@ import { searchBooks } from '../util/BookAPI';
         super(props);
         this.state = {
             books: [],
-            searchQuery: props.sQuery,
+            searchTitle: props.sTitle,
+            searchAuthor: props.sAuthor,
+            titleOrAuthor: props.titleOrAuthor,
             loading: true,
         }
         this.getBooks = this.getBooks.bind(this);
     }
 
-    getBooks = (terms) => {
-        searchBooks(terms).then(books => {
-            this.setState({
-              books: books.items,
-              loading: false,
-            });
-          });
+    getBooks = () => {
+        console.log('By Author? ' + this.state.titleOrAuthor);
+        if (this.state.titleOrAuthor) {
+            searchBooksByAuthor(this.state.searchAuthor).then(books => {
+                this.setState({
+                  books: books.items,
+                  loading: false,
+                });
+              });
+        } else {
+            searchBooksByTitle(this.state.searchTitle).then(books => {
+                this.setState({
+                  books: books.items,
+                  loading: false,
+                });
+              });
+        }
      }
 
     componentDidMount = () => {
-        this.getBooks(this.state.searchQuery);
+        this.getBooks();
     }
 
     render (){

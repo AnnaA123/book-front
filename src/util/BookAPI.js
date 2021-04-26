@@ -1,7 +1,14 @@
 const apiUrl = 'https://www.googleapis.com/books';
 
-const searchBooks = (terms) => {
+const searchBooksByTitle = (terms) => {
     return fetch(apiUrl + '/v1/volumes?q=search+' + terms).then(response => {
+        return response.json();
+    })
+}
+
+const searchBooksByAuthor = (terms) => {
+    console.log('API terms: ' + terms)
+    return fetch(apiUrl + '/v1/volumes?q=inauthor+' + terms).then(response => {
         return response.json();
     })
 }
@@ -12,4 +19,4 @@ const getBook = (id) => {
     })
 }
 
-export { searchBooks, getBook };
+export { searchBooksByTitle, searchBooksByAuthor, getBook };
