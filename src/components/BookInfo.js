@@ -35,6 +35,14 @@ import { Link, withRouter } from 'react-router-dom';
         })
     }
 
+    showBookAuthors = () => {
+        if (this.state.bookInfo.volumeInfo.authors !== undefined) {
+            return <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
+                return <p>{author}</p>
+            })}</div>
+        }
+    }
+
     handleClick(event) {
         event.preventDefault();
 
@@ -64,9 +72,7 @@ import { Link, withRouter } from 'react-router-dom';
                 return <div>
                 <div>
                     <h3>{this.state.bookInfo.volumeInfo.title}</h3>
-                    <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
-                        return <p>{author}</p>
-                    })}</div>
+                    {this.showBookAuthors()}
                     <Link to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
                 </div>
                 </div>
