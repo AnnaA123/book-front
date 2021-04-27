@@ -44,7 +44,7 @@ class SignUpForm extends React.Component {
                 username: this.state.user.username,
                 email: this.state.user.email,
                 password: this.state.user.password,
-                description: 'I love reading!',
+                description: 'Welcome to my profile!',
             }
 
             register(user).then(user => {

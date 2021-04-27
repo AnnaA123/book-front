@@ -114,8 +114,6 @@ import { getBook } from '../util/BookAPI';
 
     handleEditBtn = (event) => {
         event.preventDefault();
-        console.log('editing');
-
         this.setState({editing: !this.state.editing});
     }
     
@@ -133,15 +131,17 @@ import { getBook } from '../util/BookAPI';
         })
     }
 
+    // if editing, review content will be editable through a form
     contentView = () => {
         if (this.state.editing) {
             return <div>
-                <form onSubmit={this.reviewEdit}>
-                    <input 
-                    type='text'
+                <form id='editform' onSubmit={this.reviewEdit}>
+                    <textarea 
+                    form='editform'
                     name='edits'
                     value={this.state.edits}
-                    onChange={this.handleChange}></input>
+                    onChange={this.handleChange}></textarea>
+
                     <button type='submit'>Save</button>
                 </form>
             </div>
@@ -150,7 +150,7 @@ import { getBook } from '../util/BookAPI';
         }
     }
 
-    // delete button (only visible for the user who wrote the review)
+    // edit and delete buttons (only visible for the user who wrote the review)
     editRemoveBtn = () => {
         if (this.state.viewerWriter) {
             return <div>

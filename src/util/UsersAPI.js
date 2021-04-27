@@ -20,6 +20,21 @@ const register = (user) => {
     })
 }
 
+const editUser = (data, id, token) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'authorization': 'bearer ' + token,
+        },
+        body: JSON.stringify(data),
+    };
+    return fetch(apiUrl + '/' + id, options).then(response => {
+        return response.json();
+    })
+}
+
 const deleteUser = (id, token) => {
     const options = {
         method: 'DELETE',
@@ -34,4 +49,4 @@ const deleteUser = (id, token) => {
     })
 } 
 
-export { getSingleUser, register, deleteUser };
+export { getSingleUser, register, editUser, deleteUser };
