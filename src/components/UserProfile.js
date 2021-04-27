@@ -92,7 +92,7 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
     editBtn = () => {
         if (this.state.userProfile && this.state.editing === false) {
             return <div>
-                <button onClick={this.handleEditBtn}>Edit profile</button>
+                <button className="btn btn-danger m-3" onClick={this.handleEditBtn}>Edit profile</button>
                 </div>
         }
     }
@@ -110,7 +110,7 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
         } else {
             if (this.state.user !== undefined) {
                 return <div>
-                    <p>{this.state.user.username}</p>
+                    <h2>{this.state.user.username}</h2>
                     {this.userDescription()}
                     {this.editBtn()}
                     </div>

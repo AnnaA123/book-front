@@ -134,33 +134,42 @@ import { getBook } from '../util/BookAPI';
     // if editing, review content will be editable through a form
     contentView = () => {
         if (this.state.editing) {
-            return <div>
+            return <div className="d-flex flex-column">
                 <form id='editform' onSubmit={this.reviewEdit}>
+                    <div className="input-group mb-3">
                     <textarea 
                     form='editform'
+                    className="form-control"
                     name='edits'
                     value={this.state.edits}
                     onChange={this.handleChange}></textarea>
+                    </div>
 
-                    <button type='submit'>Save</button>
+                    <button className="btn btn-danger m-3" type='submit'>Save</button>
                 </form>
 
-                <button className="btn btn-danger m-3" onClick={this.handleDelete}>Delete review</button>
             </div>
         } else {
-            return <div><p>{this.state.review.Content}</p></div>
+            return <div>
+                <p>{this.state.review.Content}</p>
+                <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
+                </div>
         }
     }
 
     // edit and delete buttons (only visible for the user who wrote the review)
-    editRemoveBtn = () => {
+    editBtn = () => {
         if (this.state.viewerWriter && this.state.editing === false) {
             return <div>
                 <button className="btn btn-danger m-3" onClick={this.handleEditBtn}>Edit review</button>
-                
                 </div>
         }
     }
+
+    deleteBtn = () => {
+        if (this.state.viewerWriter) {
+            return <div><button className="btn btn-danger mt-5 m-3" onClick={this.handleDelete}>Delete review</button></div>
+    }}
 
     showCover = (book) => {
         if (book.volumeInfo.imageLinks !== undefined){
@@ -191,19 +200,19 @@ import { getBook } from '../util/BookAPI';
         } else {
             if (this.state.review.Title !== undefined && this.state.book.volumeInfo !== undefined) {
                 return <div className="d-flex flex-row">
-                    <div className="p-2 m-3">
                     <div>
+                    <div className="p-2 m-3">
                         {this.showCover(this.state.book)}
-                        <h3>{this.state.book.volumeInfo.title}</h3>
+                        <Link className="link-danger text-decoration-none" to={`/book/${this.state.book.id}`}><h2>{this.state.book.volumeInfo.title}</h2></Link>
                         {this.showBookAuthors(this.state.book)}
-                        <Link className="link-danger text-decoration-none" to={`/write/${this.state.book.id}`}>Write review</Link>
+                        {this.deleteBtn()}
                     </div>
                 </div>
                     <div className="p-5 w-100">
                         <h3>{this.state.review.Title}</h3>
                         {this.contentView()}
-                        <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
-                        {this.editRemoveBtn()}
+                        
+                        {this.editBtn()}
                     </div>
                         
                     </div>
