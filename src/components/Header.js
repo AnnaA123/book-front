@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
  function Header() {
      if (localStorage.getItem('token') !== null) {
         return (
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <nav className="navbar navbar-expand navbar-dark bg-danger">
                 <div className='container-fluid'>
                     <a className='navbar-brand' href='/'>BookSight</a>
                         <div>
@@ -29,7 +29,7 @@ import { Link, withRouter } from 'react-router-dom';
         
      } else {
         return (
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <nav className="navbar navbar-expand navbar-dark bg-danger">
                 <div className='container-fluid'>
                     <Link className='navbar-brand' to='/'>BookSight</Link>
                         <div>

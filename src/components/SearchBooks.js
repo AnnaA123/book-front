@@ -23,6 +23,14 @@ import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
             });
      }
 
+     showThumbnail = (book) => {
+         if (book.volumeInfo.imageLinks !== undefined){
+            return <img className="mt-3" src={ book.volumeInfo.imageLinks.thumbnail } alt={book.volumeInfo.title}/>
+         } else {
+             return <p className="mt-3">(No image available)</p>
+         }
+     }
+
     componentDidMount = () => {
         this.getBooks();
     }
@@ -34,12 +42,15 @@ import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
                     </div>
         } else {
             if (this.state.books !== undefined) {
-                return this.state.books.map((book) => {
-                    return <div key={book.id}><Link to={`/book/${book.id}`} key={book.id}> 
-                    <div>
-                        <p>{ book.volumeInfo.title }</p>
-                    </div></Link></div>
-                });
+                return <div className="row row-cols-3">{this.state.books.map((book) => {
+                    return <div className="col col-sm-4 border border-white" key={book.id}>
+                        <Link className="link-danger text-decoration-none" to={`/book/${book.id}`} key={book.id}> 
+                            <div>
+                                {this.showThumbnail(book)}
+                                <p>{ book.volumeInfo.title }</p>
+                            </div>
+                    </Link></div>
+                })}</div>
             } else {
                 return <div>
                     <p>No search results</p>

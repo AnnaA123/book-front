@@ -144,6 +144,8 @@ import { getBook } from '../util/BookAPI';
 
                     <button type='submit'>Save</button>
                 </form>
+
+                <button className="btn btn-danger m-3" onClick={this.handleDelete}>Delete review</button>
             </div>
         } else {
             return <div><p>{this.state.review.Content}</p></div>
@@ -152,11 +154,27 @@ import { getBook } from '../util/BookAPI';
 
     // edit and delete buttons (only visible for the user who wrote the review)
     editRemoveBtn = () => {
-        if (this.state.viewerWriter) {
+        if (this.state.viewerWriter && this.state.editing === false) {
             return <div>
-                <button onClick={this.handleEditBtn}>Edit review</button>
-                <button onClick={this.handleDelete}>Delete review</button>
+                <button className="btn btn-danger m-3" onClick={this.handleEditBtn}>Edit review</button>
+                
                 </div>
+        }
+    }
+
+    showCover = (book) => {
+        if (book.volumeInfo.imageLinks !== undefined){
+           return <img className="mt-3" src={ book.volumeInfo.imageLinks.thumbnail } alt={book.volumeInfo.title}/>
+        } else {
+            return <p className="mt-3 mb-3">No image available</p>
+        }
+    }
+
+    showBookAuthors = (book) => {
+        if (book.volumeInfo.authors !== undefined) {
+            return <div>{book.volumeInfo.authors.map((author) => {
+                return <p>{author}</p>
+            })}</div>
         }
     }
 
@@ -172,16 +190,22 @@ import { getBook } from '../util/BookAPI';
                     </div>
         } else {
             if (this.state.review.Title !== undefined && this.state.book.volumeInfo !== undefined) {
-                return <div>
+                return <div className="d-flex flex-row">
+                    <div className="p-2 m-3">
                     <div>
-                    <Link to={`/book/${this.state.book.id}`}><h2>{this.state.book.volumeInfo.title}</h2></Link>
+                        {this.showCover(this.state.book)}
+                        <h3>{this.state.book.volumeInfo.title}</h3>
+                        {this.showBookAuthors(this.state.book)}
+                        <Link className="link-danger text-decoration-none" to={`/write/${this.state.book.id}`}>Write review</Link>
                     </div>
-                    <div>
+                </div>
+                    <div className="p-5 w-100">
                         <h3>{this.state.review.Title}</h3>
                         {this.contentView()}
                         <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
-                    </div>
                         {this.editRemoveBtn()}
+                    </div>
+                        
                     </div>
             } else {
                 return <div>

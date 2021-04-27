@@ -56,35 +56,46 @@ class LoginForm extends React.Component {
     }
     
     render () {
-        return <div>
-                <h1>Login</h1>
+        return <div className="container">
+            <div className="d-inline-flex">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Username</label>
+                    <h1>Login</h1>
+                    <div className="mb-3">
+                    <label for="username" className="form-label">Username</label>
                     <input 
                         type="text" 
-                        name="username" id="username" label="Username"
+                        className="form-control"
+                        name="username" 
+                        id="username" 
+                        label="Username"
                         value={this.state.user.username}
                         onChange={this.handleChange} />
-                    <label>Password</label>
+                    </div>
+                    <div className="mb-3">
+                    <label for="password">Password</label>
                     <input 
                         type="password" 
-                        name="password" id="password" label="Password"
+                        className="form-control"
+                        name="password" 
+                        id="password" 
+                        label="Password"
                         value={this.state.user.password}
                         onChange={this.handleChange}
                          />
+                    </div>
                     <div>
                         <p>{this.state.errorMessage}</p>
                     </div>
 
                     <div>
-                        <p>Don't have an account?</p>
-                        <Link to='/signup'>Sign up here!</Link>
+                        <p>Don't have an account yet? <Link to='/signup'>Sign up here!</Link></p>
+                        
                         <p>{"\n"}</p>
                     </div>
 
-                    <button type="submit" >Login</button>
+                    <button type="submit" className="btn btn-danger">Login</button>
                 </form>
-                </div>
+                </div></div>
     }
 }
 

@@ -83,14 +83,14 @@ import { getSingleUser } from '../util/UsersAPI';
                     </div>
         } else {
             if (this.state.reviews[0] !== undefined) {
-                return this.state.reviews.map((review) => {
-                    return <div key={review._id}>
-                    <div>
-                        <Link to={`/review/${review._id}`}><h3>{ review.Title }</h3></Link>
+                return <div className="p-5 w-100 flex-column">{this.state.reviews.map((review) => {
+                    return <div className="mb-3 border-bottom border-dark" key={review._id}>
+                    <div className="mb-3 ">
+                        <Link className="link-danger text-decoration-none" to={`/review/${review._id}`}><h3>{ review.Title }</h3></Link>
                         <p>{ review.Content }</p>
-                        <Link to={`/user/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
+                        <Link className="link-dark fw-bold" to={`/user/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
                     </div></div>
-                });
+                })}</div>
             } else {
                 return <div>
                         <p>No reviews</p>

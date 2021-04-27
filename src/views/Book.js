@@ -5,7 +5,7 @@ import ListReviews from '../components/ListReviews';
 function Book(props) {
     console.log('BOOKJSprops: ' + JSON.stringify(props));
     return (
-        <div>
+        <div className="d-flex flex-row">
             <BookInfo {...props}/>
             <ListReviews {...props} />
         </div>

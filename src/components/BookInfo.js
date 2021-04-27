@@ -35,11 +35,19 @@ import { Link, withRouter } from 'react-router-dom';
         })
     }
 
-    showBookAuthors = () => {
-        if (this.state.bookInfo.volumeInfo.authors !== undefined) {
-            return <div>{this.state.bookInfo.volumeInfo.authors.map((author) => {
+    showBookAuthors = (book) => {
+        if (book.volumeInfo.authors !== undefined) {
+            return <div>{book.volumeInfo.authors.map((author) => {
                 return <p>{author}</p>
             })}</div>
+        }
+    }
+
+    showCover = (book) => {
+        if (book.volumeInfo.imageLinks !== undefined){
+           return <img className="mt-3" src={ book.volumeInfo.imageLinks.thumbnail } alt={book.volumeInfo.title}/>
+        } else {
+            return <p className="mt-3 mb-3">No image available</p>
         }
     }
 
@@ -69,11 +77,12 @@ import { Link, withRouter } from 'react-router-dom';
             if (this.state.bookInfo.volumeInfo === undefined){
                 return <div><p>error</p></div>
             } else {
-                return <div>
+                return <div className="p-2 m-3">
                 <div>
+                    {this.showCover(this.state.bookInfo)}
                     <h3>{this.state.bookInfo.volumeInfo.title}</h3>
-                    {this.showBookAuthors()}
-                    <Link to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
+                    {this.showBookAuthors(this.state.bookInfo)}
+                    <Link className="link-danger text-decoration-none" to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
                 </div>
                 </div>
             }

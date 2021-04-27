@@ -66,46 +66,58 @@ class SignUpForm extends React.Component {
                 <Link to='/login'>Back to Login page</Link>
             </div>
         } else {
-        return <div>
-                <h1>Sign Up</h1>
+        return <div className="container">
+            <div className=" d-inline-flex">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Username</label>
-                    <input 
-                        type="text" 
-                        name="username" 
-                        value={this.state.username} 
-                        onChange={this.handleChange} />
-                    <label>Email Address</label>
-                    <input 
-                        type="email" 
-                        name="email"
-                        value={this.state.email} 
-                        onChange={this.handleChange} />
-                    <label>Password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={this.state.password} 
-                        onChange={this.handleChange} />
-                    <label>Password</label>
-                    <input 
-                        type="password" 
-                        name="checkPw"
-                        value={this.state.checkPw} 
-                        onChange={this.handleChange} />
+                    <h1>Sign Up</h1>
+                    <div className="mb-3">
+                        <label for="username">Username</label>
+                        <input 
+                            type="text" 
+                            className="form-control"
+                            name="username" 
+                            value={this.state.username} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            className="form-control"
+                            name="email"
+                            value={this.state.email} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div className="mb-3">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            className="form-control"
+                            name="password" 
+                            value={this.state.password} 
+                            onChange={this.handleChange} />
+                    </div>
+                    <div for="checkPw" className="mb-3">
+                        <label>Password again</label>
+                        <input 
+                            type="password" 
+                            className="form-control"
+                            name="checkPw"
+                            value={this.state.checkPw} 
+                            onChange={this.handleChange} />
+                    </div>
 
                     <div>
                         <p>{this.state.errorMessage}</p>
                     </div>
 
                     <div>
-                        <p>Already have an account?</p>
-                        <Link to='/login'>Login here!</Link>
+                        <p>Already have an account? <Link to='/login'>Login here!</Link></p>
                     </div>
 
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" className="btn btn-danger">Sign Up</button>
                 </form>
-                </div>
+                </div></div>
         }
     }
 }

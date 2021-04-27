@@ -45,20 +45,30 @@ import SearchBooks from './SearchBooks';
     }
 
     render (){
-        return <div>
-            <form onSubmit={this.handleTitleSearch} className="d-flex">
-                <input 
-                    className="form-control me-2" 
-                    type="search" 
-                    placeholder="Search by Title" 
-                    name='searchTitle'
-                    value={this.state.searchTitle} 
-                    onChange={this.handleChange}/>
-                <button className="btn btn-outline-success" type="submit">Search</button>
+        return <div className="container">
+            <div className="d-inline-flex">
+            <form onSubmit={this.handleTitleSearch}>
+            <div className="row g-3 align-items-center mt-1">
+                <div className="col-auto">
+                    <label for="searchTitle" className="col-form-label">Search for books by title</label>
+                    </div>
+                    <div className="col-auto">
+                    <input 
+                        className="form-control" 
+                        type="search" 
+                        placeholder="Search" 
+                        name='searchTitle'
+                        value={this.state.searchTitle} 
+                        onChange={this.handleChange}/>
+                </div>
+                <div className="col-auto">
+                <button className="btn btn-outline-danger" type="submit">Search</button>
+                </div></div>
             </form>
-
-            {this.searchResults()}
-            
+            </div>
+            <div className="mt-3">
+                {this.searchResults()}
+            </div>
         </div>
     }
 }
