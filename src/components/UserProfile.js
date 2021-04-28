@@ -68,16 +68,19 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
 
     userDescription = () => {
         if (this.state.editing) {
-            return <div>
-                <form id='descForm' onSubmit={this.editDescription}>
-                    <textarea
-                    form='descform'
-                    name='edits'
-                    value={this.state.edits}
-                    onChange={this.handleChange}></textarea>
+            return <div className="d-flex flex-column">
+            <form id='descform' onSubmit={this.editDescription}>
+                <div className="input-group mb-3">
+                <textarea 
+                form='descform'
+                className="form-control"
+                name='edits'
+                value={this.state.edits}
+                onChange={this.handleChange}></textarea>
+                </div>
 
-                    <button type='submit'>Save</button>
-                </form>
+                <button className="btn btn-danger m-3" type='submit'>Save</button>
+            </form>
             </div>
         } else {
             return <div><p>{this.state.user.description}</p></div>

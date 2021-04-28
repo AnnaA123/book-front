@@ -28,7 +28,7 @@ import { deleteUser } from '../util/UsersAPI.js';
 
     render (){
         return <div>
-            <button onClick={this.handleClick}>Delete user</button>
+            <button className="btn btn-danger m-3" onClick={this.handleClick}>Delete user</button>
         </div>
     }
 }

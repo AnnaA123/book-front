@@ -147,7 +147,6 @@ import { getBook } from '../util/BookAPI';
 
                     <button className="btn btn-danger m-3" type='submit'>Save</button>
                 </form>
-
             </div>
         } else {
             return <div>
