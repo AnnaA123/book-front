@@ -152,7 +152,7 @@ import { getBook } from '../util/BookAPI';
         } else {
             return <div>
                 <p>{this.state.review.Content}</p>
-                <Link to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
+                <Link className="link-dark fw-bold" to={`/user/${this.state.user._id}`}>{this.state.user.username}</Link>
                 </div>
         }
     }

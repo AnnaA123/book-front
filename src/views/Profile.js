@@ -4,7 +4,7 @@ import ListUserReviews from './../components/ListUserReviews';
 
 function Profile(props) {
     return (
-        <div>
+        <div className="d-flex flex-row">
             <UserProfile />
             <ListUserReviews />
         </div>

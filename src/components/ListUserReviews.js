@@ -43,14 +43,15 @@ import { getAllUserReviews } from '../util/ReviewAPI';
                     </div>
         } else {
             if (this.state.reviews[0] !== undefined) {
-                return this.state.reviews.map((review) => {
-                    return <div key={review._id}><Link to={`/review/${review._id}`}>
-                    <div>
-                        <h3>{ review.Title }</h3>
-                        <p>{review.BookTitle}</p>
-                    </div>
-                    </Link></div>
-                });
+                return <div className="p-2 m-3">{this.state.reviews.map((review) => {
+                    return <div className="mb-3 border-bottom border-dark" key={review._id}>
+                        <Link className="link-danger text-decoration-none" to={`/review/${review._id}`}>
+                            <div>
+                                <h4>{ review.Title }</h4>
+                                <p>{review.BookTitle}</p>
+                            </div>
+                        </Link></div>
+                })} </div>
             } else {
                 return <div>
                         <p>No reviews</p>

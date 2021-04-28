@@ -109,7 +109,7 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
                     </div>
         } else {
             if (this.state.user !== undefined) {
-                return <div>
+                return <div  className="p-5 w-100">
                     <h2>{this.state.user.username}</h2>
                     {this.userDescription()}
                     {this.editBtn()}
