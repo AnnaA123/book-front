@@ -70,7 +70,7 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
         if (this.state.editing) {
             return <div className="d-flex flex-column">
             <form id='descform' onSubmit={this.editDescription}>
-                <div className="input-group mb-3">
+                <div className="mb-3">
                 <textarea 
                 form='descform'
                 className="form-control"

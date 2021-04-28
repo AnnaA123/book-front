@@ -77,28 +77,40 @@ class WriteReview extends React.Component {
     }
 
     render () {
-        return <div>
-                <h2>Write review</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Title</label>
-                    <input 
-                        type="text" 
-                        name="title" 
-                        value={this.state.username} 
-                        onChange={this.handleChange} />
-                    <label>Your review</label>
-                    <input 
-                        type="text" 
-                        name="content"
-                        value={this.state.email} 
-                        onChange={this.handleChange} />
+        return <div className="container">
+            <div className="d-inline-flex">
+                <form id='writeform' onSubmit={this.handleSubmit}>
+                    <h2>Write review</h2>
+                    <div className="mb-3">
+                        <label for="reviewtitle" className="form-label">Title</label>
+                        <input 
+                            id="reviewtitle"
+                            type="text" 
+                            className="form-control"
+                            name="title" 
+                            label="Title"
+                            value={this.state.review.title} 
+                            onChange={this.handleChange} />
+                    </div>
+
+                    <div className="mb-3">
+                        <label for="contenttext" className="form-label">Your review</label>
+                        <textarea 
+                        id="contenttext"
+                        form='writeform'
+                        className="form-control"
+                        name='content'
+                        value={this.state.review.content}
+                        onChange={this.handleChange}></textarea>
+                    </div>
 
                     <div>
                         <p>{this.state.errorMessage}</p>
                     </div>
 
-                    <button type="submit">Submit review</button>
+                    <button className="btn btn-danger m-3" type="submit">Submit review</button>
                 </form>
+                </div>
                 </div>
     }
 }
