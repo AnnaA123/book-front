@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8000/review';
+const apiUrl = 'https://booksight.jelastic.metropolia.fi/review';
 
 const getAllBookReviews = (bookId) => {
     return fetch(apiUrl + '?book=' + bookId).then(response => {

@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8000/login';
+const apiUrl = 'https://booksight.jelastic.metropolia.fi/login';
 
 const login = (username, password) => {
     const settings = {

@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8000/user';
+const apiUrl = 'https://booksight.jelastic.metropolia.fi/user';
 
 const getSingleUser = (id) => {
     return fetch(apiUrl + '/' + id).then(response => {

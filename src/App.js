@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
@@ -41,7 +41,7 @@ class App extends React.Component {
               <Route exact path='/signup' render={(props) => (
                 <Signup {...props} />
               )}></Route>
-              <Route exact path='/user/:id' render={(props) => (
+              <Route exact path='/users/:id' render={(props) => (
                 <Profile {...props} />
               )}></Route>
               <Route exact path='/book/:id' render={(props) => (

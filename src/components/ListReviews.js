@@ -13,7 +13,6 @@ import { getSingleUser } from '../util/UsersAPI';
             loading: true,
         }
         this.getReviews = this.getReviews.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     getBookId = () => {
@@ -47,7 +46,6 @@ import { getSingleUser } from '../util/UsersAPI';
                 }))
             })
          } else {
-             console.log('oops')
              setTimeout(this.getUser(id), 1000);
          }
      }
@@ -62,14 +60,6 @@ import { getSingleUser } from '../util/UsersAPI';
             return u.username;
          }
      }
-
-     // TEST
-     // <button onClick={this.handleClick}>test</button>
-     handleClick(event) {
-        event.preventDefault();
-
-        console.log('!!!!!!!!!!!!!!!!! ' + JSON.stringify(this.state.users));
-    }
 
     componentDidMount() {
         const bookId = this.getBookId();
@@ -88,7 +78,7 @@ import { getSingleUser } from '../util/UsersAPI';
                     <div className="mb-3 ">
                         <Link className="link-danger text-decoration-none" to={`/review/${review._id}`}><h3>{ review.Title }</h3></Link>
                         <p>{ review.Content }</p>
-                        <Link className="link-dark fw-bold" to={`/user/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
+                        <Link className="link-dark fw-bold" to={`/users/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
                     </div></div>
                 })}</div>
             } else {

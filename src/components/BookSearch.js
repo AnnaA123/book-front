@@ -50,7 +50,7 @@ import SearchBooks from './SearchBooks';
             <form onSubmit={this.handleTitleSearch}>
             <div className="row g-3 align-items-center mt-1">
                 <div className="col-auto">
-                    <label for="searchTitle" className="col-form-label">Search for books by title</label>
+                    <label for="searchTitle" className="col-form-label">Search for books</label>
                     </div>
                     <div className="col-auto">
                     <input 

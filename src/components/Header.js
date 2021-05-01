@@ -6,14 +6,14 @@ import { Link, withRouter } from 'react-router-dom';
         return (
             <nav className="navbar navbar-expand navbar-dark bg-danger">
                 <div className='container-fluid'>
-                    <a className='navbar-brand' href='/'>BookSight</a>
+                    <Link className='navbar-brand' to='/'>BookSight</Link>
                         <div>
                             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                 <li className='nav-item'>
                                     <Link className='nav-link' to='/' >Search</Link>
                                 </li>
                                 <li className='nav-item'>
-                                    <Link className='nav-link'  onClick={() => {window.location.href=`/user/${localStorage.getItem('currentUser')}`}}>Profile</Link>
+                                    <Link className='nav-link'  to={`/users/${localStorage.getItem('currentUser')}`} >Profile</Link>
                                 </li>
                                 <li className='nav-item'>
                                     <Link className='nav-link' to='/settings'>Settings</Link>
