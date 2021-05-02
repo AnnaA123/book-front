@@ -71,7 +71,7 @@ class SignUpForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h1>Sign Up</h1>
                     <div className="mb-3">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input 
                             type="text" 
                             className="form-control"
@@ -80,7 +80,7 @@ class SignUpForm extends React.Component {
                             onChange={this.handleChange} />
                     </div>
                     <div className="mb-3">
-                        <label for="email">Email Address</label>
+                        <label htmlFor="email">Email Address</label>
                         <input 
                             type="email" 
                             className="form-control"
@@ -89,7 +89,7 @@ class SignUpForm extends React.Component {
                             onChange={this.handleChange} />
                     </div>
                     <div className="mb-3">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input 
                             type="password" 
                             className="form-control"
@@ -98,7 +98,7 @@ class SignUpForm extends React.Component {
                             onChange={this.handleChange} />
                     </div>
                     <div for="checkPw" className="mb-3">
-                        <label>Password again</label>
+                        <label htmlFor="checkPw">Password again</label>
                         <input 
                             type="password" 
                             className="form-control"

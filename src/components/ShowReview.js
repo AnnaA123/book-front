@@ -99,6 +99,7 @@ import { getBook } from '../util/BookAPI';
         event.preventDefault();
 
         const data = {
+            Title: this.state.review.Title,
             Content: this.state.edits
         }
 

@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
                         onChange={this.handleChange} />
                     </div>
                     <div className="mb-3">
-                    <label for="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input 
                         type="password" 
                         className="form-control"

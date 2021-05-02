@@ -41,7 +41,7 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
                 edits: user.description,
                 loading: false,
             })
-            if (user._id === localStorage.getItem('currentUser')) {
+            if (user.id === localStorage.getItem('currentUser')) {
                 this.setState({
                     userProfile: true
                 })
@@ -53,10 +53,12 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
         event.preventDefault();
 
         const edited = {
+            username: this.state.user.username,
+            email: this.state.user.email,
             description: this.state.edits
         }
 
-        editUser(edited, localStorage.getItem('currentUser'), localStorage.getItem('token')).then(response => {
+        editUser(edited, localStorage.getItem('currentUser')).then(response => {
             if (response.error !== undefined) {
                 console.log(response.error);
             } else {
