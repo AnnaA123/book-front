@@ -30,13 +30,15 @@ import { getSingleUser } from '../util/UsersAPI';
               loading: false,
             });
             // userinfo abt reviews
+            /*
             reviews.map((review) => {
                 return this.getUser(review.UserID);
             })
+            */
           });
         
      }
-
+/*
      // get username 
      getUser = (id) => {
          if (this.state.reviews[0] !== undefined) {
@@ -51,7 +53,7 @@ import { getSingleUser } from '../util/UsersAPI';
      }
 
      findUser = (id) => {
-         const n = this.state.users.findIndex(x => x._id === id);
+         const n = this.state.users.findIndex(x => x.id === id);
          const u = this.state.users[n];
 
          if(u === undefined) {
@@ -60,7 +62,7 @@ import { getSingleUser } from '../util/UsersAPI';
             return u.username;
          }
      }
-
+*/
     componentDidMount() {
         const bookId = this.getBookId();
         this.getReviews(bookId);
@@ -74,11 +76,11 @@ import { getSingleUser } from '../util/UsersAPI';
         } else {
             if (this.state.reviews[0] !== undefined) {
                 return <div className="p-5 w-100 flex-column">{this.state.reviews.map((review) => {
-                    return <div className="mb-3 border-bottom border-dark" key={review._id}>
+                    return <div className="mb-3 border-bottom border-dark" key={review.id}>
                     <div className="mb-3 ">
-                        <Link className="link-danger text-decoration-none" to={`/review/${review._id}`}><h3>{ review.Title }</h3></Link>
+                        <Link className="link-danger text-decoration-none" to={`/review/${review.id}`}><h3>{ review.Title }</h3></Link>
                         <p>{ review.Content }</p>
-                        <Link className="link-dark fw-bold" to={`/users/${review.UserID}`}>{ this.findUser(review.UserID) }</Link>
+                        <Link className="link-dark fw-bold" to={`/users/${review.UserID.id}`}>{ review.UserID.username }</Link>
                     </div></div>
                 })}</div>
             } else {

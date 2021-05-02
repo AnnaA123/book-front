@@ -23,15 +23,24 @@ class LoginForm extends React.Component {
 
     //sends the info to LoginAPI.js, which sends and compares it to the database
     doLogin = () => {
-        login(this.state.user.username, this.state.user.password).then(response => {
-            if (response.user !== undefined) {
-                const userIsSet = this.props.setUser(response.user);
-                localStorage.setItem('token', response.token);
-                localStorage.setItem('currentUser', response.user._id);
-                this.props.history.push('/');
-                return userIsSet;
+        const u = {
+            username: this.state.user.username,
+            password:  this.state.user.password
+        }
+        login(u).then(response => {
+            console.log('WHY ' + JSON.stringify(response))
+            if (response !== null) {
+                if (response.username !== undefined) {
+                    const userIsSet = this.props.setUser(response);
+                    localStorage.setItem('token', response.token);
+                    localStorage.setItem('currentUser', response.id);
+                    this.props.history.push('/');
+                    return userIsSet;
+                } else {
+                    this.setState({errorMessage: 'Username or password is incorrect.'});
+                }
             } else {
-                this.setState({errorMessage: 'Username or password is incorrect.'});
+                this.setState({errorMessage: 'Something went wrong'});
             }
         })
     };

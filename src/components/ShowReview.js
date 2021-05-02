@@ -43,9 +43,8 @@ import { getBook } from '../util/BookAPI';
     getReview(id) {
         getSingleReview(id).then(review => {
             this.setState({
-              review,
+              review: review,
               loading: false,
-              edits: review.Content,
             });
             console.log(review);
             this.getUser(review.UserID);
@@ -53,6 +52,7 @@ import { getBook } from '../util/BookAPI';
             if (localStorage.getItem('currentUser') === review.UserID){
                 this.setState({
                     viewerWriter: true,
+                    edits: review.Content,
                 })
             }
           });
@@ -72,7 +72,7 @@ import { getBook } from '../util/BookAPI';
     }
 
     findUser = (id) => {
-        const n = this.state.user.findIndex(x => x._id === id);
+        const n = this.state.user.findIndex(x => x.id === id);
         const u = this.state.user[n];
 
         if(u === undefined) {
@@ -102,7 +102,7 @@ import { getBook } from '../util/BookAPI';
             Content: this.state.edits
         }
 
-        editReview(data, this.state.review._id, localStorage.getItem('token'))
+        editReview(data, this.state.review.id, localStorage.getItem('token'))
         .then((response) => {
             if(response.error !== undefined) {
                 console.log(response.error);
@@ -121,7 +121,7 @@ import { getBook } from '../util/BookAPI';
     handleDelete = (event) => {
         event.preventDefault();
 
-        deleteReview(this.state.review._id, localStorage.getItem('token')).then(response => {
+        deleteReview(this.state.review.id, localStorage.getItem('token')).then(response => {
             if (response.error !== undefined) {
                 console.log(response.error);
             } else {
@@ -151,7 +151,7 @@ import { getBook } from '../util/BookAPI';
         } else {
             return <div>
                 <p>{this.state.review.Content}</p>
-                <Link className="link-dark fw-bold" to={`/users/${this.state.user._id}`}>{this.state.user.username}</Link>
+                <Link className="link-dark fw-bold" to={`/users/${this.state.review.UserID.id}`}>{this.state.review.UserID.username}</Link>
                 </div>
         }
     }
