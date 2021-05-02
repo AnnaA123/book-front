@@ -21,13 +21,7 @@ const getAllBookReviews = async (BookID) => {
     const data = await fetchGraphql(queryA);
     return data.reviewsByBook;
 }
-/*
-const getAllBookReviews = (bookId) => {
-    return fetch(apiUrl + '?book=' + bookId).then(response => {
-        return response.json();;
-    })
-}
-*/
+
 const getAllUserReviews = async (UserID) => {
     const queryB = {
         query:`
@@ -48,13 +42,7 @@ const getAllUserReviews = async (UserID) => {
     const data = await fetchGraphql(queryB);
     return data.reviewsByUser;
 }
-/*
-const getAllUserReviews = (userId) => {
-    return fetch(apiUrl + '?user=' + userId).then(response => {
-        return response.json();;
-    })
-}
-*/
+
 const getSingleReview = async (id) => {
     const queryC = {
         query:`
@@ -75,23 +63,17 @@ const getSingleReview = async (id) => {
     const data = await fetchGraphql(queryC);
     return data.review;
 }
-/*
-const getSingleReview = (reviewId) => {
-    return fetch(apiUrl + '/' + reviewId).then(response => {
-        return response.json();
-    })
-}
-*/
+
 const addNewReview = async (review) => {
     const queryD = {
         query:`
             mutation {
                 addReview(
-                BookID: ${review.BookID}, 
-                BookTitle: ${review.BookTitle}, 
-                UserID: ${review.UserID},
-                Title: ${review.Title},
-                Content: ${review.Content}
+                BookID: "${review.BookID}", 
+                BookTitle: "${review.BookTitle}", 
+                UserID: "${review.UserID}",
+                Title: "${review.Title}",
+                Content: "${review.Content}"
                 ) {
                 id, 
                 Title, 
@@ -102,23 +84,26 @@ const addNewReview = async (review) => {
     const data = await fetchGraphql(queryD);
     return data.addReview;
 }
-/*
-const addNewReview = (data, token) => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'authorization': 'bearer ' + token,
-        },
-        body: JSON.stringify(data),
-    };
-    return fetch(apiUrl, options).then(response => {
-        return response.json();
-    })
-}
-*/
 
+const editReview = async (review, id) => {
+    const queryE = {
+        query:`
+            mutation {
+                modifyReview(
+                id: "${id}",
+                Title: "${review.Title}",
+                Content: "${review.Content}"
+                ) {
+                id, 
+                Title, 
+                Content
+                }
+            }`
+    }
+    const data = await fetchGraphql(queryE);
+    return data.modifyReview;
+}
+/*
 const editReview = (data, id, token) => {
     const options = {
         method: 'PUT',
@@ -133,19 +118,19 @@ const editReview = (data, id, token) => {
         return response.json();
     })
 }
-const deleteReview = (id, token) => {
-    console.log('YES ' + id + token);
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'authorization': 'bearer ' + token,
-        },
-    };
-    return fetch(apiUrl + '/' + id, options).then(response => {
-        return response.json();
-    })
+*/
+
+const deleteReview = async (id) => {
+    const queryF = {
+        query:`
+            mutation {
+                deleteReview(id: "${id}"){
+                    id
+                }
+            }`
+    }
+    const data = await fetchGraphql(queryF);
+    return data.deleteReview;
 }
 
 export { 

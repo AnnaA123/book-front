@@ -15,7 +15,6 @@ const login = async (user) => {
                 }
             }`
     }
-    console.log('bruh ', user);
     const data = await fetchGraphql(queryA);
     return data.login;
 }

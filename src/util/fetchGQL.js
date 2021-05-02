@@ -4,8 +4,10 @@ const fetchGraphql = async (query) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        authorization: 'bearer ' + localStorage.getItem('token'),
       },
       body: JSON.stringify(query),
+      
     };
     try {
       const response = await fetch(

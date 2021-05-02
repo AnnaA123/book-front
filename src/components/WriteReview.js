@@ -62,11 +62,16 @@ class WriteReview extends React.Component {
             Content: this.state.review.content
         }
 
-        addNewReview(review, localStorage.getItem('token')).then(sentReview => {
-            if (sentReview.error !== undefined) {
-                console.log('ERROR ' + sentReview.error);
+        // localStorage.getItem('token')
+        addNewReview(review).then(sentReview => {
+            if (sentReview !== null) {
+                if (sentReview.error !== undefined) {
+                    console.log('ERROR ' + sentReview.error);
+                } else {
+                    this.props.history.push(`/book/${this.state.book.id}`);
+                }
             } else {
-                this.props.history.push(`/book/${this.state.book.id}`);
+                //this.props.history.push(`/book/${this.state.book.id}`);
             }
         })
     }

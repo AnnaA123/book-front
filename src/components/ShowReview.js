@@ -47,9 +47,9 @@ import { getBook } from '../util/BookAPI';
               loading: false,
             });
             console.log(review);
-            this.getUser(review.UserID);
+            this.getUser(review.UserID.id);
             this.getBookData(review.BookID);
-            if (localStorage.getItem('currentUser') === review.UserID){
+            if (localStorage.getItem('currentUser') === review.UserID.id){
                 this.setState({
                     viewerWriter: true,
                     edits: review.Content,
@@ -102,7 +102,7 @@ import { getBook } from '../util/BookAPI';
             Content: this.state.edits
         }
 
-        editReview(data, this.state.review.id, localStorage.getItem('token'))
+        editReview(data, this.state.review.id)
         .then((response) => {
             if(response.error !== undefined) {
                 console.log(response.error);
@@ -126,7 +126,7 @@ import { getBook } from '../util/BookAPI';
                 console.log(response.error);
             } else {
                 console.log('deleted ' + JSON.stringify(this.props));
-                this.props.history.push(`/user/${localStorage.getItem('currentUser')}`);
+                this.props.history.push(`/users/${localStorage.getItem('currentUser')}`);
             }
         })
     }

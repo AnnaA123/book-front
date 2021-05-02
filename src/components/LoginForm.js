@@ -28,7 +28,6 @@ class LoginForm extends React.Component {
             password:  this.state.user.password
         }
         login(u).then(response => {
-            console.log('WHY ' + JSON.stringify(response))
             if (response !== null) {
                 if (response.username !== undefined) {
                     const userIsSet = this.props.setUser(response);
