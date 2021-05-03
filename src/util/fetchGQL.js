@@ -11,7 +11,8 @@ const fetchGraphql = async (query) => {
     };
     try {
       const response = await fetch(
-        "https://booksight.jelastic.metropolia.fi/graphql",
+        // https://booksight.jelastic.metropolia.fi/graphql
+        "http://localhost:4000/graphql",
         options
       );
       const json = await response.json();

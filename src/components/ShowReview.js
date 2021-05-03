@@ -11,6 +11,7 @@ import { getBook } from '../util/BookAPI';
         this.state = {
             review: [],
             edits: '',
+            Rating: 0,
             user: [],
             book: [],
             viewerWriter: false,
@@ -99,7 +100,8 @@ import { getBook } from '../util/BookAPI';
 
         const data = {
             Title: this.state.review.Title,
-            Content: this.state.edits
+            Content: this.state.edits,
+            Rating: this.state.Rating
         }
 
         editReview(data, this.state.review.id)
@@ -135,6 +137,18 @@ import { getBook } from '../util/BookAPI';
         if (this.state.editing) {
             return <div className="d-flex flex-column">
                 <form id='editform' onSubmit={this.reviewEdit}>
+                    <div className="col-auto">
+                        <input type="radio" id="rate1" name="Rating" value="1" onChange={this.handleChange}/>
+                        <label for="rate1">1</label><br/>
+                        <input type="radio" id="rate2" name="Rating" value="2" onChange={this.handleChange}/>
+                        <label for="rate2">2</label><br/>
+                        <input type="radio" id="rate3" name="Rating" value="3" onChange={this.handleChange}/>
+                        <label for="rate3">3</label><br/>
+                        <input type="radio" id="rate4" name="Rating" value="4" onChange={this.handleChange}/>
+                        <label for="rate4">4</label><br/>
+                        <input type="radio" id="rate5" name="Rating" value="5" onChange={this.handleChange}/>
+                        <label for="rate5">5</label><br/>
+                    </div>
                     <div className="input-group mb-3">
                     <textarea 
                     form='editform'
@@ -149,6 +163,7 @@ import { getBook } from '../util/BookAPI';
             </div>
         } else {
             return <div>
+                <p>{this.state.review.Rating}/5</p>
                 <p>{this.state.review.Content}</p>
                 <Link className="link-dark fw-bold" to={`/users/${this.state.review.UserID.id}`}>{this.state.review.UserID.username}</Link>
                 </div>

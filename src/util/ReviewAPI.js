@@ -8,6 +8,7 @@ const getAllBookReviews = async (BookID) => {
                 id, 
                 Title, 
                 Content,
+                Rating,
                 BookTitle,
                 BookID,
                 UserID {
@@ -29,6 +30,7 @@ const getAllUserReviews = async (UserID) => {
                 id, 
                 Title, 
                 Content,
+                Rating,
                 BookTitle,
                 BookID,
                 UserID {
@@ -50,6 +52,7 @@ const getSingleReview = async (id) => {
                 id, 
                 Title, 
                 Content,
+                Rating,
                 BookTitle,
                 BookID,
                 UserID {
@@ -72,7 +75,8 @@ const addNewReview = async (review) => {
                 BookTitle: "${review.BookTitle}", 
                 UserID: "${review.UserID}",
                 Title: "${review.Title}",
-                Content: "${review.Content}"
+                Content: "${review.Content}",
+                Rating: "${review.Rating}"
                 ) {
                 id, 
                 Title, 
@@ -91,7 +95,8 @@ const editReview = async (review, id) => {
                 modifyReview(
                 id: "${id}",
                 Title: "${review.Title}",
-                Content: "${review.Content}"
+                Content: "${review.Content}",
+                Rating: "${review.Rating}"
                 ) {
                 id, 
                 Title, 

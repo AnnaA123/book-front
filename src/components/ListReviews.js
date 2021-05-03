@@ -48,6 +48,7 @@ import { getSingleUser } from '../util/UsersAPI';
                     return <div className="mb-3 border-bottom border-dark" key={review.id}>
                     <div className="mb-3 ">
                         <Link className="link-danger text-decoration-none" to={`/review/${review.id}`}><h3>{ review.Title }</h3></Link>
+                        <p>{review.Rating}/5</p>
                         <p>{ review.Content }</p>
                         <Link className="link-dark fw-bold" to={`/users/${review.UserID.id}`}>{ review.UserID.username }</Link>
                     </div></div>

@@ -11,6 +11,7 @@ class WriteReview extends React.Component {
             review: {
                 title: '',
                 content: '',
+                rating: 0,
             },
             errorMessage: '',
         };
@@ -59,19 +60,16 @@ class WriteReview extends React.Component {
             UserID: localStorage.getItem('currentUser'),
             BookTitle: this.state.book.volumeInfo.title,
             Title: this.state.review.title,
-            Content: this.state.review.content
+            Content: this.state.review.content,
+            Rating: this.state.review.Rating
         }
 
         // localStorage.getItem('token')
         addNewReview(review).then(sentReview => {
-            if (sentReview !== null) {
-                if (sentReview.error !== undefined) {
-                    console.log('ERROR ' + sentReview.error);
-                } else {
-                    this.props.history.push(`/book/${this.state.book.id}`);
-                }
+            if (sentReview.error !== undefined) {
+                console.log('ERROR ' + sentReview.error);
             } else {
-                //this.props.history.push(`/book/${this.state.book.id}`);
+                this.props.history.push(`/book/${this.state.book.id}`);
             }
         })
     }
@@ -86,8 +84,21 @@ class WriteReview extends React.Component {
             <div className="d-inline-flex">
                 <form id='writeform' onSubmit={this.handleSubmit}>
                     <h2>Write review</h2>
-                    <div className="mb-3">
+                    
+                    <div className="col-auto">
+                        <input type="radio" id="rate1" name="Rating" value="1" onChange={this.handleChange}/>
+                        <label for="rate1">1</label><br/>
+                        <input type="radio" id="rate2" name="Rating" value="2" onChange={this.handleChange}/>
+                        <label for="rate2">2</label><br/>
+                        <input type="radio" id="rate3" name="Rating" value="3" onChange={this.handleChange}/>
+                        <label for="rate3">3</label><br/>
+                        <input type="radio" id="rate4" name="Rating" value="4" onChange={this.handleChange}/>
+                        <label for="rate4">4</label><br/>
+                        <input type="radio" id="rate5" name="Rating" value="5" onChange={this.handleChange}/>
+                        <label for="rate5">5</label><br/>
                         <label for="reviewtitle" className="form-label">Title</label>
+                    </div>
+                    <div className="mb-3">
                         <input 
                             id="reviewtitle"
                             type="text" 
