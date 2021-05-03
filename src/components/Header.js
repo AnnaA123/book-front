@@ -31,7 +31,7 @@ import { Link, withRouter } from 'react-router-dom';
         return (
             <nav className="navbar navbar-expand navbar-dark bg-danger">
                 <div className='container-fluid'>
-                    <Link className='navbar-brand' to='/'>BookSight</Link>
+                    <Link className='navbar-brand' to='/'>BookSide</Link>
                         <div>
                             <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
                                 <li className='nav-item'>
