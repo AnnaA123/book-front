@@ -138,21 +138,22 @@ import { getBook } from '../util/BookAPI';
             return <div className="d-flex flex-column">
                 <form id='editform' onSubmit={this.reviewEdit}>
                     <div className="col-auto">
-                        <input type="radio" id="rate1" name="Rating" value="1" onChange={this.handleChange}/>
-                        <label for="rate1">1</label><br/>
-                        <input type="radio" id="rate2" name="Rating" value="2" onChange={this.handleChange}/>
-                        <label for="rate2">2</label><br/>
-                        <input type="radio" id="rate3" name="Rating" value="3" onChange={this.handleChange}/>
-                        <label for="rate3">3</label><br/>
-                        <input type="radio" id="rate4" name="Rating" value="4" onChange={this.handleChange}/>
-                        <label for="rate4">4</label><br/>
-                        <input type="radio" id="rate5" name="Rating" value="5" onChange={this.handleChange}/>
-                        <label for="rate5">5</label><br/>
+                        <input className="me-1" type="radio" id="rate1" name="Rating" value="1" onChange={this.handleChange}/>
+                        <label className="me-3" for="rate1">1</label>
+                        <input className="me-1" type="radio" id="rate2" name="Rating" value="2" onChange={this.handleChange}/>
+                        <label className="me-3" for="rate2">2</label>
+                        <input className="me-1" type="radio" id="rate3" name="Rating" value="3" onChange={this.handleChange}/>
+                        <label className="me-3" for="rate3">3</label>
+                        <input className="me-1" type="radio" id="rate4" name="Rating" value="4" onChange={this.handleChange}/>
+                        <label className="me-3" for="rate4">4</label>
+                        <input className="me-1" type="radio" id="rate5" name="Rating" value="5" onChange={this.handleChange}/>
+                        <label className="me-3" for="rate5">5</label><br/>
                     </div>
                     <div className="input-group mb-3">
                     <textarea 
+                    id='reviewediting'
                     form='editform'
-                    className="form-control"
+                    className="form-control mt-3"
                     name='edits'
                     value={this.state.edits}
                     onChange={this.handleChange}></textarea>
