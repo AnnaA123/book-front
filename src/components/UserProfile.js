@@ -30,7 +30,6 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
         const currentLocation = window.location.href;
         const splitLocation = currentLocation.split('/');
         const userId = splitLocation[splitLocation.length -1];
-        console.log('USERID ' + userId)
         return userId;
     }
 
@@ -62,7 +61,6 @@ import {getSingleUser, editUser} from '../util/UsersAPI.js';
             if (response.error !== undefined) {
                 console.log(response.error);
             } else {
-                console.log('success');
                 window.location.reload();
             }
         })

@@ -10,11 +10,10 @@ import { deleteUser } from '../util/UsersAPI.js';
     }
 
     removeUser = (id) => {
-        deleteUser(id, localStorage.getItem('token')).then(response => {
+        deleteUser(id).then(response => {
             if (response.error !== undefined){
                 console.log('what ' + response.error);
             } else {
-                console.log('successful deletion');
                 localStorage.clear();
                 this.props.history.push('/login');
             }

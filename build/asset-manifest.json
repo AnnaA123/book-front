@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/~annaalav/sssf/booksite/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/~annaalav/sssf/booksite/static/js/main.a804d095.chunk.js",
-    "main.js.map": "/~annaalav/sssf/booksite/static/js/main.a804d095.chunk.js.map",
-    "runtime-main.js": "/~annaalav/sssf/booksite/static/js/runtime-main.34dfd5c2.js",
-    "runtime-main.js.map": "/~annaalav/sssf/booksite/static/js/runtime-main.34dfd5c2.js.map",
-    "static/js/2.734fb847.chunk.js": "/~annaalav/sssf/booksite/static/js/2.734fb847.chunk.js",
-    "static/js/2.734fb847.chunk.js.map": "/~annaalav/sssf/booksite/static/js/2.734fb847.chunk.js.map",
-    "static/js/3.5f15ccab.chunk.js": "/~annaalav/sssf/booksite/static/js/3.5f15ccab.chunk.js",
-    "static/js/3.5f15ccab.chunk.js.map": "/~annaalav/sssf/booksite/static/js/3.5f15ccab.chunk.js.map",
-    "index.html": "/~annaalav/sssf/booksite/index.html",
-    "static/css/main.9d5b29c0.chunk.css.map": "/~annaalav/sssf/booksite/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.734fb847.chunk.js.LICENSE.txt": "/~annaalav/sssf/booksite/static/js/2.734fb847.chunk.js.LICENSE.txt"
+    "main.css": "/~annaalav/sssf/bookside/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/~annaalav/sssf/bookside/static/js/main.d0ebb8f9.chunk.js",
+    "main.js.map": "/~annaalav/sssf/bookside/static/js/main.d0ebb8f9.chunk.js.map",
+    "runtime-main.js": "/~annaalav/sssf/bookside/static/js/runtime-main.844f011d.js",
+    "runtime-main.js.map": "/~annaalav/sssf/bookside/static/js/runtime-main.844f011d.js.map",
+    "static/js/2.c580941c.chunk.js": "/~annaalav/sssf/bookside/static/js/2.c580941c.chunk.js",
+    "static/js/2.c580941c.chunk.js.map": "/~annaalav/sssf/bookside/static/js/2.c580941c.chunk.js.map",
+    "static/js/3.342529f8.chunk.js": "/~annaalav/sssf/bookside/static/js/3.342529f8.chunk.js",
+    "static/js/3.342529f8.chunk.js.map": "/~annaalav/sssf/bookside/static/js/3.342529f8.chunk.js.map",
+    "index.html": "/~annaalav/sssf/bookside/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/~annaalav/sssf/bookside/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.c580941c.chunk.js.LICENSE.txt": "/~annaalav/sssf/bookside/static/js/2.c580941c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.34dfd5c2.js",
-    "static/js/2.734fb847.chunk.js",
+    "static/js/runtime-main.844f011d.js",
+    "static/js/2.c580941c.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.a804d095.chunk.js"
+    "static/js/main.d0ebb8f9.chunk.js"
   ]
 }

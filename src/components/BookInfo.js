@@ -51,6 +51,14 @@ import { Link, withRouter } from 'react-router-dom';
         }
     }
 
+    writeReview = () => {
+        if (localStorage.getItem('token') !== null) {
+            return <div>
+                <Link className="link-danger text-decoration-none" to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
+                </div>
+        }
+    }
+
     handleClick(event) {
         event.preventDefault();
 
@@ -82,7 +90,7 @@ import { Link, withRouter } from 'react-router-dom';
                     {this.showCover(this.state.bookInfo)}
                     <h3>{this.state.bookInfo.volumeInfo.title}</h3>
                     {this.showBookAuthors(this.state.bookInfo)}
-                    <Link className="link-danger text-decoration-none" to={`/write/${this.state.bookInfo.id}`}>Write review</Link>
+                    {this.writeReview()}
                 </div>
                 </div>
             }

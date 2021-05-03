@@ -7,7 +7,6 @@ const searchBooksByTitle = (terms) => {
 }
 
 const searchBooksByAuthor = (terms) => {
-    console.log('API terms: ' + terms)
     return fetch(apiUrl + '/v1/volumes?q=inauthor+' + terms).then(response => {
         return response.json();
     })

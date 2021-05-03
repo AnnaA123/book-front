@@ -17,7 +17,6 @@ import { getAllUserReviews } from '../util/ReviewAPI';
         const currentLocation = window.location.href;
         const splitLocation = currentLocation.split('/');
         const userId = splitLocation[splitLocation.length -1];
-        console.log('USERID ' + userId)
         return userId;
     }
 

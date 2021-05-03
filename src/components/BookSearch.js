@@ -28,8 +28,6 @@ import SearchBooks from './SearchBooks';
 
     handleTitleSearch = (event) => {
         event.preventDefault();
-        console.log('searching ' + this.state.searchTitle);
-
         this.setState(prevState => ({ byAuthor: false }));
         this.toggler();
     }

@@ -1,5 +1,4 @@
 import {fetchGraphql} from './fetchGQL.js';
-const apiUrl = 'https://booksight.jelastic.metropolia.fi/review';
 
 const getAllBookReviews = async (BookID) => {
     const queryA = {
@@ -103,22 +102,6 @@ const editReview = async (review, id) => {
     const data = await fetchGraphql(queryE);
     return data.modifyReview;
 }
-/*
-const editReview = (data, id, token) => {
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'authorization': 'bearer ' + token,
-        },
-        body: JSON.stringify(data),
-    };
-    return fetch(apiUrl + '/' + id, options).then(response => {
-        return response.json();
-    })
-}
-*/
 
 const deleteReview = async (id) => {
     const queryF = {

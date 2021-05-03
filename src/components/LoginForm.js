@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h1>Login</h1>
                     <div className="mb-3">
-                    <label for="username" className="form-label">Username</label>
+                    <label htmlFor="username" className="form-label">Username</label>
                     <input 
                         type="text" 
                         className="form-control height=200px"

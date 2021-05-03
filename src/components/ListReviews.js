@@ -19,7 +19,6 @@ import { getSingleUser } from '../util/UsersAPI';
         const currentLocation = window.location.href;
         const splitLocation = currentLocation.split('/');
         const bookId = splitLocation[splitLocation.length -1];
-        console.log('review BOOKID ' + bookId)
         return bookId;
     }
 
@@ -29,40 +28,10 @@ import { getSingleUser } from '../util/UsersAPI';
               reviews,
               loading: false,
             });
-            // userinfo abt reviews
-            /*
-            reviews.map((review) => {
-                return this.getUser(review.UserID);
-            })
-            */
           });
         
      }
-/*
-     // get username 
-     getUser = (id) => {
-         if (this.state.reviews[0] !== undefined) {
-            getSingleUser(id).then(user => {
-                this.setState((prev) => ({
-                    users: [...prev.users, user]
-                }))
-            })
-         } else {
-             setTimeout(this.getUser(id), 1000);
-         }
-     }
 
-     findUser = (id) => {
-         const n = this.state.users.findIndex(x => x.id === id);
-         const u = this.state.users[n];
-
-         if(u === undefined) {
-             return '';
-         } else {
-            return u.username;
-         }
-     }
-*/
     componentDidMount() {
         const bookId = this.getBookId();
         this.getReviews(bookId);

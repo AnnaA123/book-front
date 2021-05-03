@@ -46,7 +46,6 @@ import { getBook } from '../util/BookAPI';
               review: review,
               loading: false,
             });
-            console.log(review);
             this.getUser(review.UserID.id);
             this.getBookData(review.BookID);
             if (localStorage.getItem('currentUser') === review.UserID.id){
@@ -126,7 +125,6 @@ import { getBook } from '../util/BookAPI';
             if (response.error !== undefined) {
                 console.log(response.error);
             } else {
-                console.log('deleted ' + JSON.stringify(this.props));
                 this.props.history.push(`/users/${localStorage.getItem('currentUser')}`);
             }
         })

@@ -1,5 +1,4 @@
 import {fetchGraphql} from './fetchGQL.js';
-const apiUrl = 'https://booksight.jelastic.metropolia.fi/user';
 
 const getSingleUser = async (id) => {
     const queryA = {
@@ -17,13 +16,6 @@ const getSingleUser = async (id) => {
     return data.user;
 }
 
-/*
-const getSingleUser = (id) => {
-    return fetch(apiUrl + '/' + id).then(response => {
-        return response.json();
-    }).catch(error => console.error('Error:', error));;
-}
-*/
 //add a new user at SignUpForm.js
 const register = async (user) => {
     const queryB = {
@@ -43,20 +35,7 @@ const register = async (user) => {
     const data = await fetchGraphql(queryB);
     return data.signup;
 }
-/*
-const register = (user) => {
-    const settings = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-    };
-    return fetch(apiUrl, settings).then(response => {
-        return response.json();
-    })
-}
-*/
+
 const editUser = async (user, id) => {
     const queryC = {
         query:`
@@ -76,22 +55,7 @@ const editUser = async (user, id) => {
     const data = await fetchGraphql(queryC);
     return data.modifyUser;
 }
-/*
-const editUser = (data, id, token) => {
-    const options = {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'authorization': 'bearer ' + token,
-        },
-        body: JSON.stringify(data),
-    };
-    return fetch(apiUrl + '/' + id, options).then(response => {
-        return response.json();
-    })
-}
-*/
+
 const deleteUser = async (id) => {
     const queryE = {
         query:`
@@ -104,20 +68,6 @@ const deleteUser = async (id) => {
     const data = await fetchGraphql(queryE);
     return data.deleteUser;
 }
-/*
-const deleteUser = (id, token) => {
-    const options = {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'authorization': 'bearer ' + token,
-        },
-    };
-    return fetch(apiUrl + '/' + id, options).then(response => {
-        return response.json();
-    })
-} 
-*/
+
 
 export { getSingleUser, register, editUser, deleteUser };
