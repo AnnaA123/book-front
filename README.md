@@ -6,9 +6,16 @@ Backend repository: https://github.com/AnnaA123/book-site/
 
 Book data from [Google Books API](https://developers.google.com/books)
 
+---
 
+# npm packages
 
-===
+- react
+- react-router-dom
+- bootstrap
+
+React
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
