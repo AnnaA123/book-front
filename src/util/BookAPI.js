@@ -12,10 +12,16 @@ const searchBooksByAuthor = (terms) => {
     })
 }
 
+const searchBooksBySubject = (terms) => {
+    return fetch(apiUrl + '/v1/volumes?q=subject:' + terms).then(response => {
+        return response.json();
+    })
+}
+
 const getBook = (id) => {
     return fetch(apiUrl + '/v1/volumes/' + id).then(response => {
         return response.json();
     })
 }
 
-export { searchBooksByTitle, searchBooksByAuthor, getBook };
+export { searchBooksByTitle, searchBooksByAuthor, searchBooksBySubject, getBook };

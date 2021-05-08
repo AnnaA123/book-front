@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBooks from './SearchBooks';
+import SuggestBooks from './SuggestBooks';
 
 // search bar at /views/Search.js for searching books from google api
  class BookSearch extends React.Component {
@@ -23,6 +24,8 @@ import SearchBooks from './SearchBooks';
     searchResults = () => {
         if (this.state.toggle) {
             return <div><SearchBooks sTitle={this.state.searchTitle}/></div>
+        } else {
+            return <SuggestBooks/>
         }
     }
 

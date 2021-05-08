@@ -1,4 +1,5 @@
 
+Update (on 8.5): added SuggestBook.js which adds random books into the search page when nothing is being searched.
 
 Link to website (not always available): https://users.metropolia.fi/~annaalav/sssf/bookside/#/
 

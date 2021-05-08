@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
+import { searchBooksByTitle } from '../util/BookAPI';
 
 // list books from google books api with props from BookSearch.js
  class SearchBooks extends React.Component {

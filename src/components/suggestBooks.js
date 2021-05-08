@@ -1,21 +1,48 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { searchBooksByTitle, searchBooksByAuthor } from '../util/BookAPI';
+import { searchBooksBySubject } from '../util/BookAPI';
 
-// list books from google books api with props from BookSearch.js
+// adds random books into the search page when nothing is being searched
  class SuggestBooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             books: [],
-            searchTitle: props.sTitle,
+            subject: this.setSubject(1, 7),
             loading: true,
         }
         this.getBooks = this.getBooks.bind(this);
     }
 
+    setSubject = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        const num = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        console.log(num)
+
+        switch(num) {
+            case 1:
+                return 'fiction'
+            case 2:
+                return 'science'
+            case 3:
+                return 'horror'
+            case 4:
+                return 'comics'
+            case 5:
+                return 'fantasy'
+            case 6:
+                return 'ya'
+            case 7:
+                return 'diy'
+            default:
+              return 'fiction';
+          } 
+    }
+
     getBooks = () => {
-        searchBooksByTitle(this.state.searchTitle).then(books => {
+        searchBooksBySubject(this.state.subject).then(books => {
             this.setState({
                 books: books.items,
                 loading: false,

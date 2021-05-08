@@ -114,9 +114,9 @@ class WriteReview extends React.Component {
                         <label for="contenttext" className="form-label">Your review</label>
                         <textarea 
                         id="contenttext"
-                        form='writeform'
+                        form="writeform"
                         className="form-control"
-                        name='content'
+                        name="content"
                         value={this.state.review.content}
                         onChange={this.handleChange}></textarea>
                     </div>
